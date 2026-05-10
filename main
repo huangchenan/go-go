@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本關西旅遊行程表 - 2/4-2/9</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; }
+        .map-link { color: #2563eb; text-decoration: underline; transition: color 0.2s; }
+        .map-link:hover { color: #1d4ed8; }
+        .timeline-item { position: relative; border-left: 2px solid #e2e8f0; padding-left: 24px; padding-bottom: 24px; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            border: 2px solid white;
+        }
+        .day-card { display: none; }
+        .day-card.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-6">
+            <h1 class="text-2xl font-bold flex items-center gap-2">
+                <i class="fas fa-plane-departure"></i> 關西冬之行 IT210/IT213
+            </h1>
+            <p class="text-indigo-100 text-sm mt-1">2025年2月4日 - 2月9日 (共六天五夜)</p>
+        </div>
+        <!-- Day Selector -->
+        <div class="bg-indigo-800 px-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <div class="max-w-4xl mx-auto flex">
+                <button onclick="showDay('day1')" class="day-btn py-3 px-5 text-indigo-200 border-b-4 border-transparent hover:text-white" id="btn-day1">2/4 前哨</button>
+                <button onclick="showDay('day2')" class="day-btn py-3 px-5 text-indigo-200 border-b-4 border-transparent hover:text-white" id="btn-day2">2/5 京都</button>
+                <button onclick="showDay('day3')" class="day-btn py-3 px-5 text-indigo-200 border-b-4 border-transparent hover:text-white" id="btn-day3">2/6 宇治</button>
+                <button onclick="showDay('day4')" class="day-btn py-3 px-5 text-indigo-200 border-b-4 border-transparent hover:text-white" id="btn-day4">2/7 觀光</button>
+                <button onclick="showDay('day5')" class="day-btn py-3 px-5 text-indigo-200 border-b-4 border-transparent hover:text-white" id="btn-day5">2/8 大阪</button>
+                <button onclick="showDay('day6')" class="day-btn py-3 px-5 text-indigo-200 border-b-4 border-transparent hover:text-white" id="btn-day6">2/9 返程</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        
+        <!-- Day 1 -->
+        <div id="day1" class="day-card active">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-4">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">2/4</span>
+                    出發前夕
+                </h2>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">14:00 - 15:00</div>
+                    <div class="text-gray-800 font-medium">
+                        <a href="https://www.google.com/maps/search/?api=1&query=CHO+Stay+Capsule+Hotel+T2" target="_blank" class="map-link">抵達草休行館 (已訂位) <i class="fas fa-map-marker-alt text-xs"></i></a>
+                    </div>
+                    <div class="text-sm text-gray-500">地點：桃園機場第二航廈</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">次日 03:00 - 04:00</div>
+                    <div class="text-gray-800 font-medium font-bold">預定機場專車</div>
+                    <div class="text-sm text-gray-500">接送至第一航廈</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div id="day2" class="day-card">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-4">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">2/5</span>
+                    飛向關西：京都之夜
+                </h2>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">04:00 - 04:30</div>
+                    <div class="text-gray-800 font-medium text-red-600 font-bold">虎航報到 (T1 第七櫃台)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">07:00 - 10:25</div>
+                    <div class="text-gray-800 font-medium">航班 IT210 起飛</div>
+                    <div class="text-sm text-gray-500">
+                        目的地：<a href="https://www.google.com/maps/search/?api=1&query=Kansai+International+Airport" target="_blank" class="map-link">關西國際機場 (KIX)</a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">10:44 - 12:04</div>
+                    <div class="text-gray-800 font-medium">交通：HARUKA 往京都</div>
+                    <div class="text-sm text-gray-500">月台：4號月台 (4番月台) / 車程約 1H20</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">12:05 - 12:30</div>
+                    <div class="text-gray-800 font-medium">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Kyoto+Station" target="_blank" class="map-link">抵達京都．存放行李 <i class="fas fa-map-marker-alt text-xs"></i></a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">10:44 - 12:04</div>
+                    <div class="text-gray-800 font-medium">交通：HARUKA 往京都</div>
+                    <div class="text-sm text-gray-500">月台：4號月台 (4番月台) / 車程約 1H20</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">12:05 - 12:30</div>
+                    <div class="text-gray-800 font-medium">抵達京都．存放行李</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">12:50 - 13:00</div>
+                    <div class="text-gray-800 font-medium">午餐：自助餐吃到飽</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">18:00 前後</div>
+                    <div class="text-gray-800 font-medium">逛京都車站、空中走廊</div>
+                    <div class="text-sm text-gray-500">
+                        推薦：<a href="https://www.google.com/maps/search/?api=1&query=Kyoto+Isetan" target="_blank" class="map-link text-xs">京都伊勢丹</a>、
+                        <a href="https://www.google.com/maps/search/?api=1&query=Kyoto+Ramen+Koji" target="_blank" class="map-link text-xs">拉麵小路</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div id="day3" class="day-card">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-4">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">2/6</span>
+                    宇治抹茶與世界遺產
+                </h2>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">07:00 - 10:00</div>
+                    <div class="text-gray-800 font-medium">飯店早餐</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">11:00 - 11:31</div>
+                    <div class="text-gray-800 font-medium">京都車站往宇治/城陽</div>
+                    <div class="text-sm text-gray-500">抵達後步行約17分</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">11:31 ~</div>
+                    <div class="text-gray-800 font-medium text-green-700">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Nakamura+Tokichi+Main+Store" target="_blank" class="map-link">中村藤吉本店 (宇治) <i class="fas fa-map-marker-alt text-xs"></i></a>
+                    </div>
+                    <div class="text-sm text-gray-500 font-bold">★ 務必先拿號碼牌</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">14:00 - 16:00</div>
+                    <div class="text-gray-800 font-medium">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Ujigami+Shrine" target="_blank" class="map-link text-xs">宇治上神社</a>、
+                        <a href="https://www.google.com/maps/search/?api=1&query=Byodoin+Temple" target="_blank" class="map-link text-xs">平等院</a>
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        參訪：鳳凰堂、宇治當地肉舖「<a href="https://www.google.com/maps/search/?api=1&query=Hariyoshi+Uji" target="_blank" class="map-link text-xs italic">はりよし</a>」
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">14:00 - 16:00</div>
+                    <div class="text-gray-800 font-medium">宇治上神社、平等院</div>
+                    <div class="text-sm text-gray-500">參訪：鳳凰堂、宇治當地肉舖「はりよし」</div>
+                </div>
+                <div class="timeline-item border-b-0">
+                    <div class="text-sm font-semibold text-blue-600">17:00 - 18:00</div>
+                    <div class="text-gray-800 font-medium">返回飯店</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div id="day4" class="day-card">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-4">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">2/7</span>
+                    移動至大阪：阿倍野夜景
+                </h2>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">07:00 - 08:10</div>
+                    <div class="text-gray-800 font-medium">飯店早餐</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">08:30 - 08:40</div>
+                    <div class="text-gray-800 font-medium font-bold text-orange-600 underline">當日 7/1 開始預訂事項 (注意!)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">12:00 - 14:00</div>
+                    <div class="text-gray-800 font-medium">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Abeno+Harukas" target="_blank" class="map-link">阿倍野 HARUKAS <i class="fas fa-map-marker-alt text-xs"></i></a>
+                    </div>
+                    <div class="text-sm text-gray-500">俯瞰大阪美景</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">入住</div>
+                    <div class="text-gray-800 font-medium">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Hotel+Osaka" target="_blank" class="map-link">道頓堀酒店 <i class="fas fa-map-marker-alt text-xs"></i></a>
+                    </div>
+                    <div class="text-sm text-gray-500">地理位置優越，適合逛街</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div id="day5" class="day-card">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-4">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">2/8</span>
+                    大阪購物與美食
+                </h2>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">07:00 - 10:00</div>
+                    <div class="text-gray-800 font-medium">早餐時段</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">12:00 - 13:30</div>
+                    <div class="text-gray-800 font-medium">午餐時光</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">下午 - 晚上</div>
+                    <div class="text-gray-800 font-medium">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Shinsaibashi-suji+Shopping+Street" target="_blank" class="map-link">心齋橋商店街</a>、
+                        <a href="https://www.google.com/maps/search/?api=1&query=SIZUYA+Shinsaibashi" target="_blank" class="map-link">志津屋 SIZUYA</a>
+                    </div>
+                    <div class="text-sm text-gray-500">採買伴手禮、逛心齋橋筋</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div id="day6" class="day-card">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-4">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">2/9</span>
+                    最後採買與返程
+                </h2>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">07:00 - 10:00</div>
+                    <div class="text-gray-800 font-medium">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Shinsaibashi-suji+Shopping+Street" target="_blank" class="map-link text-xs italic">心齋橋最後巡禮</a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">15:05 - 15:41</div>
+                    <div class="text-gray-800 font-medium">搭乘南海電鐵</div>
+                    <div class="text-sm text-gray-500">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Namba+Station" target="_blank" class="map-link">難波站</a> 往關西機場
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div id="day6" class="day-card">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-4">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">2/9</span>
+                    最後採買與返程
+                </h2>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">07:00 - 10:00</div>
+                    <div class="text-gray-800 font-medium">早餐後心齋橋最後巡禮</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">15:05 - 15:41</div>
+                    <div class="text-gray-800 font-medium">搭乘南海電鐵</div>
+                    <div class="text-sm text-gray-500">難波往關西機場</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">15:55 - 16:00</div>
+                    <div class="text-gray-800 font-medium">抵達機場報到、行李託運</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="text-sm font-semibold text-blue-600">18:55 - 21:15</div>
+                    <div class="text-gray-800 font-medium text-red-600 font-bold">航班 IT213 回程</div>
+                    <div class="text-sm text-gray-500">目的地：桃園國際機場 (TPE)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                <h3 class="font-bold text-blue-800 mb-2 items-center flex gap-2">
+                    <i class="fas fa-info-circle"></i> 溫馨提示
+                </h3>
+                <ul class="text-sm text-blue-700 space-y-1 list-disc ml-4">
+                    <li>2/6 中村藤吉建議一到宇治先衝去抽號碼牌。</li>
+                    <li>關西機場 T1 報到櫃台建議提早2.5-3小時到達。</li>
+                    <li>準備好 Visit Japan Web 方便入境與免稅。</li>
+                </ul>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-lg border border-orange-100">
+                <h3 class="font-bold text-orange-800 mb-2 items-center flex gap-2">
+                    <i class="fas fa-exclamation-triangle"></i> 注意事項
+                </h3>
+                <ul class="text-sm text-orange-700 space-y-1 list-disc ml-4">
+                    <li>2/5 凌晨 03:00 機場專車請務必再次確認聯繫方式。</li>
+                    <li>2/7 早上 8:30 的預訂事項（7/1開始訂）請設提醒。</li>
+                    <li>隨身攜帶行動電源與保暖衣物（2月均溫約5-10度）。</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function showDay(dayId) {
+            // Hide all cards
+            document.querySelectorAll('.day-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            // Show selected card
+            document.getElementById(dayId).classList.add('active');
+            
+            // Update button styles
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                btn.classList.remove('text-white', 'border-white');
+                btn.classList.add('text-indigo-200', 'border-transparent');
+            });
+            const activeBtn = document.getElementById('btn-' + dayId);
+            activeBtn.classList.remove('text-indigo-200', 'border-transparent');
+            activeBtn.classList.add('text-white', 'border-white');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize first day
+        window.onload = () => {
+            showDay('day1');
+        };
+    </script>
+</body>
+</html>
