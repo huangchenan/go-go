@@ -111,6 +111,33 @@
         .stay-card-map-link:active {
             opacity: 0.85;
         }
+
+        /* VJW：鍵值列（對齊表單填寫參考） */
+        .vjw-kv {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            align-items: flex-start;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.18);
+            font-size: 0.75rem;
+            line-height: 1.45;
+        }
+        .vjw-kv:last-child {
+            border-bottom: none;
+        }
+        .vjw-kv dt {
+            color: rgb(6 95 70);
+            opacity: 0.92;
+            flex-shrink: 0;
+            max-width: 42%;
+        }
+        .vjw-kv dd {
+            margin: 0;
+            text-align: right;
+            font-weight: 600;
+            color: #111827;
+        }
     </style>
 </head>
 <body class="pb-32"> <!-- 增加底部內距，避免內容被固定欄遮擋 -->
@@ -653,13 +680,114 @@
 
         <!-- Tab: VJW -->
         <div id="vjw-tab" class="tab-content">
-            <div class="bg-white rounded-3xl shadow-sm p-10 text-center border border-gray-100">
-                <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform rotate-3">
-                    <i class="fas fa-qrcode text-4xl"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3">Visit Japan Web</h3>
-                <p class="text-sm text-gray-500 mb-8 leading-relaxed">請預先截圖入境審查與海關申報 QR Code，離線也可使用。</p>
-                <a href="https://www.vjw.digital.go.jp/" target="_blank" class="block bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-blue-200">立即登入 VJW</a>
+            <div class="flex items-center gap-2 mb-4">
+                <i class="fas fa-qrcode text-emerald-600 text-lg"></i>
+                <h3 class="text-base font-bold text-gray-900">VJW 資料<span class="text-xs font-normal text-gray-500 ml-2">（填表參考 · 行前請再以官網為準）</span></h3>
+            </div>
+            <p class="text-xs text-gray-600 mb-3 leading-relaxed">完成線上填寫後，請將<strong>入境審查／海關申報 QR</strong>截圖保存，離線亦可出示。</p>
+            <a href="https://www.vjw.digital.go.jp/" target="_blank" rel="noopener noreferrer" class="block w-full bg-emerald-600 text-white text-center py-3.5 rounded-2xl font-bold shadow-md shadow-emerald-200 mb-5">開啟 Visit Japan Web 官網</a>
+
+            <div class="rounded-2xl border border-emerald-200 bg-gradient-to-b from-emerald-50/90 to-teal-50/40 shadow-sm px-4 py-5 space-y-6">
+
+                <!-- 個人資料 / 航班 -->
+                <section>
+                    <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm mb-3">
+                        <i class="fas fa-user-circle text-emerald-600"></i>
+                        <span>個人資料</span>
+                    </div>
+                    <div class="pl-1">
+                        <p class="text-xs font-bold text-emerald-700 mb-2 flex items-center gap-1"><i class="fas fa-plane-departure text-[11px]"></i> 航班</p>
+                        <dl>
+                            <div class="vjw-kv"><dt>航空公司名稱</dt><dd>台灣虎航 IT · TIGERAIR TAIWAN</dd></div>
+                            <div class="vjw-kv"><dt>班機號（去程 2/5）</dt><dd>IT210</dd></div>
+                            <div class="vjw-kv"><dt>班機號（回程 2/9）</dt><dd>IT213</dd></div>
+                            <div class="vjw-kv"><dt>抵達空港</dt><dd>関西國際機場 Terminal 1</dd></div>
+                        </dl>
+                    </div>
+                </section>
+
+                <hr class="border-emerald-200/60">
+
+                <!-- 京都住宿 -->
+                <section>
+                    <p class="text-xs font-bold text-emerald-800 mb-0.5">住宿<span class="text-[11px] font-normal text-gray-600">（日文／英文擇一填即可）</span></p>
+                    <p class="text-[11px] text-emerald-900/70 font-semibold mb-3">★ 行程 Day 2～3 連住</p>
+                    <dl>
+                        <div class="vjw-kv"><dt>都道府縣</dt><dd>京都府 / KYOTO FU</dd></div>
+                        <div class="vjw-kv"><dt>市區町村</dt><dd>京都市南區（南区） · KYOTO SHI MINAMI KU</dd></div>
+                        <div class="vjw-kv"><dt>町字／番地</dt><dd>東九条上殿田町44-1<br><span class="text-[10px] font-normal text-gray-600">601-8002 · HIGASHIKUJO KAMIDENCHO 44-1</span></dd></div>
+                        <div class="vjw-kv"><dt>飯店名稱</dt><dd>ヴィアインプライム京都駅八条口<br><span class="text-[11px] font-semibold text-gray-800">Via Inn Prime Kyotoeki Hachijoguchi（VIA INN PRIME 京都駅八条口）</span></dd></div>
+                        <div class="vjw-kv"><dt>在日電話</dt><dd>81 75 662 5489<br><span class="text-[10px] font-normal text-gray-600">※ +81 / 國碼欄視表單拆法調整（以官網為準）</span></dd></div>
+                    </dl>
+                    <a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-3 text-[13px] font-bold text-blue-700">
+                        <i class="fas fa-map-marker-alt text-[12px]"></i><span>Google 地圖：VIA INN PRIME 京都駅八条口</span>
+                    </a>
+                </section>
+
+                <hr class="border-emerald-200/60">
+
+                <!-- 大阪住宿 -->
+                <section>
+                    <p class="text-xs font-bold text-emerald-800 mb-0.5">住宿<span class="text-[11px] font-normal text-gray-600">（日文／英文擇一填即可）</span></p>
+                    <p class="text-[11px] text-emerald-900/70 font-semibold mb-3">★ 行程 Day 4～5 連住</p>
+                    <dl>
+                        <div class="vjw-kv"><dt>都道府縣</dt><dd>大阪府 / OSAKA FU</dd></div>
+                        <div class="vjw-kv"><dt>市區町村</dt><dd>大阪市中央區 · OSAKA SHI CHUO KU</dd></div>
+                        <div class="vjw-kv"><dt>町字／番地</dt><dd>道頓堀2-3-25<br><span class="text-[10px] font-normal text-gray-600">542-0071 · DOTONBORI 2-chome 3-25</span></dd></div>
+                        <div class="vjw-kv"><dt>飯店名稱</dt><dd>道頓堀ホテル（なんば道頓堀ホテル）<br><span class="text-[11px] font-semibold text-gray-800">Dotonbori Hotel</span></dd></div>
+                        <div class="vjw-kv"><dt>在日電話</dt><dd>81 6 6213 9040<br><span class="text-[10px] font-normal text-gray-600">※ 以飯店官網／訂房信為準</span></dd></div>
+                    </dl>
+                    <a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-3 text-[13px] font-bold text-blue-700">
+                        <i class="fas fa-map-marker-alt text-[12px]"></i><span>Google 地圖：道頓堀酒店</span>
+                    </a>
+                </section>
+
+                <hr class="border-emerald-200/60">
+
+                <!-- 行李 -->
+                <section>
+                    <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm mb-3">
+                        <i class="fas fa-suitcase-rolling text-emerald-600"></i>
+                        <span>行李（虎航參考）</span>
+                    </div>
+                    <dl>
+                        <div class="vjw-kv"><dt>手提</dt><dd>2 件合計 ≤10KG · 約 54×38×23 cm</dd></div>
+                        <div class="vjw-kv"><dt>托運</dt><dd>依票種／加購<br><span class="text-[10px] font-normal text-gray-600">Tigerlight 多無免費額 · Smart‧Pro 常見 20KG · 單件約≤30KG · 三邊和≤203cm／單邊≤120cm</span></dd></div>
+                    </dl>
+                    <p class="text-[10px] text-gray-600 mt-2 leading-relaxed">填 VJW／海關行李申報請以<strong>你自己購票的實際額度</strong>為準。<a href="https://www.tigerairtw.com/zh-TW/ready-to-go/fees" target="_blank" rel="noopener noreferrer" class="text-blue-700 font-semibold underline underline-offset-2">虎航行李費用</a></p>
+                </section>
+
+                <hr class="border-emerald-200/60">
+
+                <!-- HARUKA -->
+                <section>
+                    <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm mb-2">
+                        <i class="fas fa-train text-emerald-600"></i>
+                        <span>HARUKA（抵達後關空→京都）</span>
+                    </div>
+                    <p class="text-[11px] text-gray-600 mb-2 leading-relaxed">班機約 10:25 落地，計畫於關空站搭乘約 <strong class="text-gray-800">10:44 發／12:04 抵京都</strong>；誤點可改<strong>下一班區間對照車</strong>。</p>
+                    <div class="rounded-xl bg-white/70 border border-emerald-100 overflow-hidden">
+                        <table class="w-full text-[11px] text-center">
+                            <thead>
+                                <tr class="bg-emerald-600/15 font-bold text-emerald-950">
+                                    <th class="py-2 px-1">關空發車</th>
+                                    <th class="py-2 px-1">京都抵達</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-800 divide-y divide-emerald-100/80">
+                                <tr><td class="py-1.5">9:42</td><td class="py-1.5 font-medium">11:04</td></tr>
+                                <tr class="bg-amber-50/50"><td class="py-1.5">10:16</td><td class="py-1.5">11:34 <span class="text-[10px] text-gray-500 block font-normal">趕緊</span></td></tr>
+                                <tr class="bg-emerald-100/60 font-semibold"><td class="py-1.5">10:44</td><td class="py-1.5">12:04 ★</td></tr>
+                                <tr><td class="py-1.5">11:14</td><td class="py-1.5">12:34</td></tr>
+                                <tr><td class="py-1.5">11:44</td><td class="py-1.5">13:04</td></tr>
+                                <tr><td class="py-1.5">12:14</td><td class="py-1.5">13:34</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-[10px] text-gray-500 mt-2">詳細區間請見「行程」Day 2 或 <a href="https://www.westjr.co.jp/global/en/timetable/pdf/haruka_timetable.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-700 underline underline-offset-2">JR HARUKA 時刻 PDF</a></p>
+                </section>
+
+                <p class="text-[10px] text-gray-600 leading-relaxed pt-1 border-t border-emerald-200/50 mt-4">※ VJW／海關若僅問「第一晚住宿」，以入境當夜為<strong>京都飯店</strong>為佳；請依當時畫面欄位與問題作答。</p>
             </div>
         </div>
 
