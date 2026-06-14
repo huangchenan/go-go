@@ -48,9 +48,9 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 .guide-title { font-weight: bold; font-size: 0.8rem; color: #1e3c72; }
 .guide-content { display: none; padding: 0.8rem; }
 .guide-content.show { display: block; }
-.guide-text { width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem; font-size: 0.7rem; font-family: inherit; resize: vertical; }
+.guide-text { width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem; font-size: 0.7rem; font-family: inherit; resize: vertical; background: #fff8f0; }
 .guide-image-input { width: 100%; padding: 0.4rem; margin-bottom: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem; font-size: 0.7rem; }
-.guide-image { max-width: 100%; margin-top: 0.5rem; border-radius: 0.5rem; display: none; }
+.guide-image { max-width: 100%; margin-top: 0.5rem; border-radius: 0.5rem; display: none; border: 1px solid #ccc; }
 .guide-image.show { display: block; }
 .hotel-card { background: #fff; border-radius: 1rem; padding: 1rem; margin-top: 1rem; border-left: 4px solid #1e3c72; }
 .hotel-name { font-weight: bold; margin: 0.3rem 0; color: #1e3c72; }
@@ -85,7 +85,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 .ctrl-row { max-width: 600px; margin: 0.5rem auto; padding: 0 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .ctrl-btn { background: #1e3c72; color: #fff; border: none; padding: 0.5rem; border-radius: 1rem; font-weight: bold; cursor: pointer; flex: 1; min-width: 100px; }
 .ctrl-btn.btn-edit.active { background: #f5a623; }
-.ctrl-btn.btn-delete { background: #dc3545; }
 .toast { position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; z-index: 1000; display: none; }
 .edit-banner { background: #fff3e0; border: 1px solid #f5a623; border-radius: 0.5rem; padding: 0.5rem; margin-bottom: 1rem; font-size: 0.75rem; display: none; }
 .edit-banner.show { display: block; }
@@ -97,6 +96,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 .edit-item-btn.show { display: inline-block; }
 .edit-item-btn.add { background: #28a745; }
 .edit-item-btn.delete { background: #dc3545; }
+.map-preview-btn { font-size: 0.6rem; background: #1e3c72; color: #fff; border: none; border-radius: 0.3rem; padding: 0.1rem 0.4rem; margin-left: 0.3rem; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -128,7 +128,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 
 <div class="tab-wrap">
   <div id="tab-itinerary" class="tab-content active">
-    <div id="editBanner" class="edit-banner">✏️ 編輯模式已開啟 - 點擊黃框文字修改 | 「➕上方新增」行程 | 「🗑️刪除」行程</div>
+    <div id="editBanner" class="edit-banner">✏️ 編輯模式已開啟 - 點擊黃框文字修改 | 點「🔗 編輯連結」可貼上 Google 地圖網址</div>
     <div class="day-selector" id="daySelector">
       <button class="day-btn active" onclick="showDay('d1')">Day 1</button>
       <button class="day-btn" onclick="showDay('d2')">Day 2</button>
@@ -137,14 +137,32 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <button class="day-btn" onclick="showDay('d5')">Day 5</button>
     </div>
 
-    <!-- Day 1 行程區塊（內含完整行程） -->
+    <!-- Day 1 -->
     <div id="day-d1" class="day-section active">
       <div class="day-header"><span style="font-size:2rem">🛬</span><h2 data-day="d1" class="editable-title">Day 1 | 機場入境、直奔京都與清水寺懷舊暮色</h2></div>
-      <div class="timeline" id="timeline-d1">
-        <!-- 行程會由 JavaScript 動態產生，但為了確保顯示，直接寫入 HTML -->
-      </div>
+      <div class="timeline" id="timeline-d1"></div>
       <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d1')">➕ 在 Day 1 底部新增行程</button></div>
-      <div class="guide-section" data-day="d1"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      
+      <!-- 實景指南（內含從 Excel 提取的文字） -->
+      <div class="guide-section" data-day="d1">
+        <div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 1</span><span>▼</span></div>
+        <div class="guide-content">
+          <textarea class="guide-text" placeholder="製圖說明">【關西機場 HARUKA 搭乘點】
+街景照片位置：擷取關西機場 T1 2樓往「關西空港駅」藍色 JR 入口的外觀照片。
+地圖箭頭繪製：擷取機場車站內部地圖，畫一條黃色箭頭從改札口穿過，直接指向 B 月台（HARUKA 專用月台）的下樓手扶梯。
+
+【京都站八條東口 → VIA INN PRIME】
+街景照片位置：擷取京都車站南側「八條東口」面向馬路的外觀實景。
+地圖箭頭繪製：擷取八條口馬路地圖，由「八條東口」拉出一條紅色箭頭，往南方直直穿過小巷，指向 VIA INN PRIME 飯店大門，標註「無腦直走 2 分鐘」。
+
+【清水寺巴士 D2 月台】
+街景照片位置：擷取京都站烏丸口（前站）前方巨大巴士總站的實景，特別特寫 "D2" 的綠色站牌標誌。
+地圖箭頭繪製：擷取京都站前巴士月台配置圖，從中央口出站位置拉一條綠色箭頭，穿越 A、B、C 區，精準指向 D2 月台候車線。</textarea>
+          <input type="text" class="guide-image-input" placeholder="貼上圖片網址 (Imgur、Google 相簿...)">
+          <img class="guide-image" src="" alt="實景參考圖">
+        </div>
+      </div>
+      
       <div class="hotel-card" data-day="d1"><div class="hotel-name editable">🏨 VIA INN PRIME 京都駅八条口</div><div class="hotel-address editable">📍 601-8002 京都府京都市南區東九條上殿田町44-1</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
 
@@ -153,7 +171,24 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <div class="day-header"><span style="font-size:2rem">⛩️</span><h2 data-day="d2" class="editable-title">Day 2 | 宇治茶香抹茶饗宴與伏見稻荷千本鳥居</h2></div>
       <div class="timeline" id="timeline-d2"></div>
       <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d2')">➕ 在 Day 2 底部新增行程</button></div>
-      <div class="guide-section" data-day="d2"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      <div class="guide-section" data-day="d2">
+        <div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 2</span><span>▼</span></div>
+        <div class="guide-content">
+          <textarea class="guide-text" placeholder="製圖說明">【JR 宇治站南口 → 平等院】
+街景照片位置：擷取 JR 宇治站富有設計感的茶壺雕塑與「南口」圓環外觀。
+地圖箭頭繪製：擷取宇治市區地圖，從「南口」拉出一條綠色箭頭，穿越馬路進入「宇治橋通商店街」，再右轉接「平等院表參道」，沿路標記抹茶名店位置。
+
+【中村藤吉本店外觀與動線】
+街景照片位置：擷取宇治本店極具歷史感的日式純白暖簾與大門玄關。
+地圖箭頭繪製：在地圖上用黃色星號標註其精確位置，並畫箭頭指出排隊登記候位桌的地點。
+
+【JR 稻荷站無縫接軌】
+街景照片位置：擷取 JR 稻荷站充滿狐狸裝飾的紅色車站外觀，並拍到正對面巨大朱紅鳥居的震撼視角。
+地圖箭頭繪製：擷取極簡易地圖，一條粗紅色雙向箭頭直接跨過車站前方的單線道馬路，直通大社參道，寫上「毫無難度，出站就是目的地」。</textarea>
+          <input type="text" class="guide-image-input" placeholder="貼上圖片網址">
+          <img class="guide-image" src="" alt="實景參考圖">
+        </div>
+      </div>
       <div class="hotel-card" data-day="d2"><div class="hotel-name editable">🏨 VIA INN PRIME 京都駅八条口</div><div class="hotel-address editable">📍 601-8002 京都府京都市南區東九條上殿田町44-1</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
 
@@ -162,7 +197,24 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <div class="day-header"><span style="font-size:2rem">🏞️</span><h2 data-day="d3" class="editable-title">Day 3 | 絕景天橋立與伊根舟屋 → 轉移大阪道頓堀</h2></div>
       <div class="timeline" id="timeline-d3"></div>
       <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d3')">➕ 在 Day 3 底部新增行程</button></div>
-      <div class="guide-section" data-day="d3"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      <div class="guide-section" data-day="d3">
+        <div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 3</span><span>▼</span></div>
+        <div class="guide-content">
+          <textarea class="guide-text" placeholder="製圖說明">【京都站八條口觀光巴士集合點】
+街景照片位置：擷取八條口馬路對面、專門停靠一日遊大型遊覽車的遊覽車專用月台與候車廣場。
+地圖箭頭繪製：擷取 VIA INN 飯店到集合點的地圖，畫一條黃色箭頭穿越針小路通，直線走到巴士停靠區，標註「早晨準時醒來，步行 5 分鐘抵達」。
+
+【難波一日遊下車點 → 道頓堀飯店】
+街景照片位置：擷取一日遊旅行社通常在難波（如 OCATT 或是高島屋百貨旁）的解散下車點實景。
+地圖箭頭繪製：擷取難波到道頓堀飯店的細部街區圖，畫一條紫色箭頭避開複雜地下街，直接走御堂筋大道或千日前商店街人行道，筆直導向道頓堀飯店。
+
+【道頓堀飯店標誌物】
+街景照片位置：擷取道頓堀飯店最具代表性、門口那四尊高大的「世界四大人面石柱」。
+地圖箭頭繪製：在地圖上將飯店位置打上大大的紅色驚嘆號，並註明「看到四個人頭石柱就代表到家了！」</textarea>
+          <input type="text" class="guide-image-input" placeholder="貼上圖片網址">
+          <img class="guide-image" src="" alt="實景參考圖">
+        </div>
+      </div>
       <div class="hotel-card" data-day="d3"><div class="hotel-name editable">🏨 道頓堀酒店</div><div class="hotel-address editable">📍 542-0071 大阪府大阪市中央區道頓堀2-3-25</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
 
@@ -171,7 +223,24 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <div class="day-header"><span style="font-size:2rem">🏯</span><h2 data-day="d4" class="editable-title">Day 4 | 姬路神戶一日遊與大阪天神橋筋大暴走</h2></div>
       <div class="timeline" id="timeline-d4"></div>
       <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d4')">➕ 在 Day 4 底部新增行程</button></div>
-      <div class="guide-section" data-day="d4"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      <div class="guide-section" data-day="d4">
+        <div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 4</span><span>▼</span></div>
+        <div class="guide-content">
+          <textarea class="guide-text" placeholder="製圖說明">【姬路城大手門動線】
+街景照片位置：擷取姬路城護城河上的木橋與氣勢磅礴的「大手門」入口石牆。
+地圖箭頭繪製：擷取姬路城園區圖，從遊覽車停車場拉出一條白色箭頭，穿過大手門，直直指向天守閣登閣口，並加註「爬天守閣階梯請踩穩」。
+
+【難波站轉乘梅田、天六密技】
+街景照片位置：擷取大阪地鐵御堂筋線難波站那條充滿標示的寬敞紅色地下通道。
+地圖箭頭繪製：擷取大阪地下鐵路線圖，畫一條紅色箭頭從難波坐到梅田，再轉一條紫色箭頭（谷町線），指向「天神橋筋六丁目」站。
+
+【天神橋筋六丁目站出口】
+街景照片位置：擷取地鐵「天神橋筋六丁目站」3號出口出來、上方掛著巨大天神人形燈籠的商店街入口實景。
+地圖箭頭繪製：擷取十字路口地圖，由地下鐵電扶梯出口拉出一個綠色圓圈箭頭，直插商店街有頂棚的步行區，註明「雨天也不怕，一出站就開逛」。</textarea>
+          <input type="text" class="guide-image-input" placeholder="貼上圖片網址">
+          <img class="guide-image" src="" alt="實景參考圖">
+        </div>
+      </div>
       <div class="hotel-card" data-day="d4"><div class="hotel-name editable">🏨 道頓堀酒店</div><div class="hotel-address editable">📍 542-0071 大阪府大阪市中央區道頓堀2-3-25</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
 
@@ -180,20 +249,37 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <div class="day-header"><span style="font-size:2rem">✈️</span><h2 data-day="d5" class="editable-title">Day 5 | 難波八阪神社、心齋橋最後補貨 → 關空返台</h2></div>
       <div class="timeline" id="timeline-d5"></div>
       <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d5')">➕ 在 Day 5 底部新增行程</button></div>
-      <div class="guide-section" data-day="d5"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      <div class="guide-section" data-day="d5">
+        <div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 5</span><span>▼</span></div>
+        <div class="guide-content">
+          <textarea class="guide-text" placeholder="製圖說明">【地下鐵難波站 5 號出口 → 八阪神社】
+街景照片位置：擷取御堂筋線「難波站 5 號出口」帶有黃色招牌的地面階梯實景。
+地圖箭頭繪製：擷取難波西南側複雜小巷地圖，從 5 號出口拉一條藍色箭頭，往西南方住宅區巷弄前進，精準導向「難波八阪神社」的鳥居入口。
+
+【南海電鐵難波站 3 樓改札口】
+街景照片位置：擷取高島屋百貨 3 樓、擁有超多巨型電子螢幕與一整排自動驗票閘門的「南海難波站 3F 北改札口」。
+地圖箭頭繪製：擷取高島屋/難波車站立體結構圖，畫一條黃色箭頭引導搭乘手扶梯「直升 3 樓」，並用粗體字標記：「別去地下室，南海電鐵在 3 樓！」
+
+【關西機場南海電鐵出站 → T1 報到櫃檯】
+街景照片位置：擷取抵達機場站後，橘色南海電鐵改札口出站，正對面透過大片玻璃窗看到的寬敞戶外空橋。
+地圖箭頭繪製：擷取機場 2 樓平面圖，出閘門後拉出一條綠色箭頭跨越空橋，直接進入 T1 航廈內，再指向上樓手扶梯直達 4 樓國際線出發大廳。</textarea>
+          <input type="text" class="guide-image-input" placeholder="貼上圖片網址">
+          <img class="guide-image" src="" alt="實景參考圖">
+        </div>
+      </div>
       <div class="hotel-card" data-day="d5"><div class="hotel-name editable">🏠 溫暖的家</div><div class="hotel-address editable">📍 桃園國際機場</div></div>
     </div>
   </div>
 
   <!-- 飛機資訊頁籤 -->
   <div id="tab-flight" class="tab-content">
-    <div class="flight-card"><div class="flight-card-head">🛫 去程 IT210 | 2026年2月5日 (五)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>07:00 桃園國際機場 T1</p><p><strong>抵達：</strong>10:25 關西國際機場 T1</p><p><strong>航空公司：</strong>台灣虎航</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議 20KG 以上)</td></tr></table></div></div></div>
-    <div class="flight-card"><div class="flight-card-head">🛬 回程 IT213 | 2026年2月9日 (二)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>18:55 關西國際機場 T1</p><p><strong>抵達：</strong>21:15 桃園國際機場 T1</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議 20KG 以上)</td></tr></table></div></div></div>
+    <div class="flight-card"><div class="flight-card-head">🛫 去程 IT210 | 2026年2月5日 (五)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>07:00 桃園國際機場 T1</p><p><strong>抵達：</strong>10:25 關西國際機場 T1</p><p><strong>航空公司：</strong>台灣虎航</p><p><strong>訂位代號：</strong>E2MTRY</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議 20KG 以上)</td></tr><tr><td>尺寸限制</td><td>手提：54cm x 38cm x 23cm 以內</td></tr></table></div><div class="flight-section"><div class="flight-section-title">⚠️ 注意事項</div><p>• 請於起飛前 2 小時抵達機場辦理報到</p><p>• 行動電源、鋰電池請隨身攜帶，不可託運</p><p>• 液體每瓶不超過 100ml，需放入透明夾鏈袋</p></div></div></div>
+    <div class="flight-card"><div class="flight-card-head">🛬 回程 IT213 | 2026年2月9日 (二)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>18:55 關西國際機場 T1</p><p><strong>抵達：</strong>21:15 桃園國際機場 T1</p><p><strong>航空公司：</strong>台灣虎航</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議 20KG 以上)</td></tr></table></div></div></div>
   </div>
 
   <!-- VJW 頁籤 -->
   <div id="tab-vjw" class="tab-content">
-    <div class="vjw-card"><h3>📋 Visit Japan Web 填寫資料</h3><div class="vjw-hotel-list"><div class="vjw-hotel-item"><div class="vjw-hotel-name">🏨 Day 1-2 住宿 (京都)</div><p><strong>飯店名稱：</strong>VIA INN PRIME 京都駅八条口</p><p><strong>地址：</strong>601-8002 京都府京都市南區東九條上殿田町44-1</p><p><strong>電話：</strong>+81 75-662-5489</p></div><div class="vjw-hotel-item"><div class="vjw-hotel-name">🏨 Day 3-4 住宿 (大阪)</div><p><strong>飯店名稱：</strong>道頓堀酒店</p><p><strong>地址：</strong>542-0071 大阪府大阪市中央區道頓堀2-3-25</p><p><strong>電話：</strong>+81 6-6213-9040</p></div></div><div class="vjw-link"><a href="https://www.vjw.digital.go.jp/" target="_blank">🌐 前往 Visit Japan Web 官方網站填報</a></div><p style="margin-top:1rem;font-size:0.7rem;color:#666">※ 出發前填寫並截圖 QR Code</p></div>
+    <div class="vjw-card"><h3>📋 Visit Japan Web 填寫資料</h3><div class="vjw-hotel-list"><div class="vjw-hotel-item"><div class="vjw-hotel-name">🏨 Day 1-2 住宿 (京都)</div><p><strong>飯店名稱：</strong>VIA INN PRIME 京都駅八条口</p><p><strong>地址：</strong>601-8002 京都府京都市南區東九條上殿田町44-1</p><p><strong>電話：</strong>+81 75-662-5489</p></div><div class="vjw-hotel-item"><div class="vjw-hotel-name">🏨 Day 3-4 住宿 (大阪)</div><p><strong>飯店名稱：</strong>道頓堀酒店</p><p><strong>地址：</strong>542-0071 大阪府大阪市中央區道頓堀2-3-25</p><p><strong>電話：</strong>+81 6-6213-9040</p></div></div><div class="vjw-link"><a href="https://www.vjw.digital.go.jp/" target="_blank">🌐 前往 Visit Japan Web 官方網站填報</a></div><p style="margin-top:1rem;font-size:0.7rem;color:#666">※ 請於出發前完成填寫，並將產生的 QR Code 截圖保存在手機中</p></div>
   </div>
 
   <!-- 備忘錄頁籤 -->
@@ -207,53 +293,53 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 <div id="toast" class="toast"></div>
 
 <script>
-// ======================== 行程資料 (從你的 Excel 完整轉換) ========================
+// ======================== 行程資料 (完整從 Excel 轉換) ========================
 const 行程資料 = {
   d1: [
-    {時間:"04:00-04:30", 交通工具:"專車送", 起訖:"虎航第一航廈第七櫃台", 月台:"", 出口:"", 票價:"", 注意事項:""},
-    {時間:"07:00-10:25", 交通工具:"IT210虎航", 起訖:"桃園→關西", 月台:"機位:1B1A", 出口:"", 票價:"", 注意事項:"訂位代號:E2MTRY"},
-    {時間:"10:25", 交通工具:"🛬 抵達關西機場", 起訖:"關西國際機場 T1", 月台:"機場入境大廳", 出口:"往2樓空橋移動", 票價:"—", 注意事項:"航廈內步行、迅速過關"},
-    {時間:"11:30", 交通工具:"🚄 JR 特急 Haruka", 起訖:"關西機場站 → 京都站", 月台:"JR關西機場站月台", 出口:"走空橋至對面車站改札口", 票價:"約 ¥1,800-2,200", 注意事項:"車程約75分鐘"},
-    {時間:"12:55", 交通工具:"🚶 行李與Check-in", 起訖:"京都站 → VIA INN飯店", 月台:"京都車站B1/1F", 出口:"八條東口出站", 票價:"—", 注意事項:"步程約2分鐘"},
-    {時間:"13:20", 交通工具:"🥩 午餐：國產牛吃到飽", 起訖:"京都站八條口周邊", 月台:"", 出口:"步行前往", 票價:"約 ¥4,000-5,000", 注意事項:"步行約5-10分鐘"},
-    {時間:"14:50", 交通工具:"🚌 市巴士206號", 起訖:"京都站 → 清水道站", 月台:"京都站前巴士總站 D2", 出口:"尋找D2排隊線", 票價:"¥230", 注意事項:"搭乘約20分鐘"},
-    {時間:"15:30", 交通工具:"⛩️ 清水寺參拜", 起訖:"清水道 → 仁王門", 月台:"清水道巴士站下車", 出口:"順松原通往上爬", 票價:"¥500門票", 注意事項:"上坡步行10-15分鐘"},
-    {時間:"16:30", 交通工具:"📸 二年坂．三年坂", 起訖:"清水寺 → 八坂塔", 月台:"古街老巷", 出口:"沿石階下山", 票價:"免費", 注意事項:"漫步約30分鐘"},
-    {時間:"18:30", 交通工具:"🚌 市巴士回程", 起訖:"清水道 → 京都站", 月台:"清水道回程巴士站", 出口:"往京都站方向", 票價:"¥230", 注意事項:"預留25-30分鐘"},
-    {時間:"19:00", 交通工具:"🍜 晚餐：京都站周邊", 起訖:"10樓拉麵小路/11樓炸豬排", 月台:"車站大樓內", 出口:"自由挑選", 票價:"約 ¥1,500-3,000", 注意事項:"可至八條口AEON補貨"}
+    {時間:"04:00-04:30", 交通工具:"專車送", 起訖:"虎航第一航廈第七櫃台", 月台:"", 出口:"", 票價:"", 注意事項:"", 地圖預設:"https://www.google.com/maps/search/?api=1&query=桃園機場第一航廈"},
+    {時間:"07:00-10:25", 交通工具:"IT210虎航", 起訖:"桃園 → 關西", 月台:"機位:1B1A", 出口:"", 票價:"", 注意事項:"訂位代號:E2MTRY", 地圖預設:"https://www.google.com/maps/search/?api=1&query=關西國際機場"},
+    {時間:"10:25", 交通工具:"🛬 抵達關西機場", 起訖:"關西國際機場 T1", 月台:"機場入境大廳", 出口:"往2樓空橋移動", 票價:"—", 注意事項:"航廈內步行、迅速過關", 地圖預設:"https://www.google.com/maps/search/?api=1&query=關西國際機場第一航廈"},
+    {時間:"11:30", 交通工具:"🚄 JR 特急 Haruka", 起訖:"關西機場站 → 京都站", 月台:"JR關西機場站月台", 出口:"走空橋至對面車站改札口", 票價:"約 ¥1,800-2,200", 注意事項:"車程約75分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=關西機場站+JR+Haruka"},
+    {時間:"12:55", 交通工具:"🚶 行李與Check-in", 起訖:"京都站 → VIA INN飯店", 月台:"京都車站B1/1F", 出口:"八條東口出站", 票價:"—", 注意事項:"步程約2分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3"},
+    {時間:"13:20", 交通工具:"🥩 午餐：國產牛吃到飽", 起訖:"京都站八條口周邊", 月台:"", 出口:"步行前往", 票價:"約 ¥4,000-5,000", 注意事項:"步行約5-10分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=京都站八條口+國產牛"},
+    {時間:"14:50", 交通工具:"🚌 市巴士206號", 起訖:"京都站 → 清水道站", 月台:"京都站前巴士總站 D2", 出口:"尋找D2排隊線", 票價:"¥230", 注意事項:"搭乘約20分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=京都站前巴士總站+D2"},
+    {時間:"15:30", 交通工具:"⛩️ 清水寺參拜", 起訖:"清水道 → 仁王門", 月台:"清水道巴士站下車", 出口:"順松原通往上爬", 票價:"¥500門票", 注意事項:"上坡步行10-15分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=清水寺"},
+    {時間:"16:30", 交通工具:"📸 二年坂．三年坂", 起訖:"清水寺 → 八坂塔", 月台:"古街老巷", 出口:"沿石階下山", 票價:"免費", 注意事項:"漫步約30分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=二年坂+三年坂"},
+    {時間:"18:30", 交通工具:"🚌 市巴士回程", 起訖:"清水道 → 京都站", 月台:"清水道回程巴士站", 出口:"往京都站方向", 票價:"¥230", 注意事項:"預留25-30分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=清水道巴士站"},
+    {時間:"19:00", 交通工具:"🍜 晚餐：京都站周邊", 起訖:"10樓拉麵小路/11樓炸豬排", 月台:"車站大樓內", 出口:"自由挑選", 票價:"約 ¥1,500-3,000", 注意事項:"可至八條口AEON補貨", 地圖預設:"https://www.google.com/maps/search/?api=1&query=京都車站+拉麵小路"}
   ],
   d2: [
-    {時間:"08:30", 交通工具:"🚃 JR奈良線", 起訖:"京都站 → 宇治站", 月台:"JR京都站8～10號月台", 出口:"從八條口過橋", 票價:"¥240", 注意事項:"搭快車約20分"},
-    {時間:"09:00", 交通工具:"🪷 平等院鳳凰堂", 起訖:"宇治站 → 平等院", 月台:"JR宇治站", 出口:"南口出站", 票價:"¥700門票", 注意事項:"步行10分鐘"},
-    {時間:"10:30", 交通工具:"🌊 宇治川散步", 起訖:"橘島→朝霧橋→宇治神社", 月台:"宇治川沿岸", 出口:"沿河岸步道", 票價:"免費", 注意事項:"步行10-20分鐘"},
-    {時間:"11:20", 交通工具:"🍵 中村藤吉本店", 起訖:"宇治川步行至本店", 月台:"", 出口:"提早登記候位", 票價:"約 ¥1,500-2,500", 注意事項:"步行約5分鐘"},
-    {時間:"13:00", 交通工具:"🚃 JR奈良線", 起訖:"宇治站 → 稻荷站", 月台:"JR宇治站月台", 出口:"走回宇治站", 票價:"¥240", 注意事項:"搭普通車至稻荷站"},
-    {時間:"14:00", 交通工具:"🦊 伏見稻荷大社", 起訖:"稻荷站 → 大社正門", 月台:"JR稻荷站", 出口:"唯一出口", 票價:"免費", 注意事項:"出站即到"},
-    {時間:"14:20", 交通工具:"⛩️ 千本鳥居", 起訖:"樓門→本殿→千本鳥居", 月台:"大社後方登山步道", 出口:"順參拜動線", 票價:"免費", 注意事項:"爬坡30-60分鐘"},
-    {時間:"16:30", 交通工具:"🚃 JR奈良線", 起訖:"稻荷站 → 京都站", 月台:"JR稻荷站月台", 出口:"走回稻荷站", 票價:"¥150", 注意事項:"車程僅5分鐘"},
-    {時間:"18:00", 交通工具:"🍖 燒肉弘", 起訖:"京都站八條口店", 月台:"", 出口:"透過Google預訂", 票價:"約 ¥3,000-5,000", 注意事項:"但馬屋Premium"}
+    {時間:"08:30", 交通工具:"🚃 JR奈良線", 起訖:"京都站 → 宇治站", 月台:"JR京都站8～10號月台", 出口:"從八條口過橋", 票價:"¥240", 注意事項:"搭快車約20分", 地圖預設:"https://www.google.com/maps/search/?api=1&query=JR京都站+奈良線"},
+    {時間:"09:00", 交通工具:"🪷 平等院鳳凰堂", 起訖:"宇治站 → 平等院", 月台:"JR宇治站", 出口:"南口出站", 票價:"¥700門票", 注意事項:"步行10分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=平等院鳳凰堂"},
+    {時間:"10:30", 交通工具:"🌊 宇治川散步", 起訖:"橘島→朝霧橋→宇治神社", 月台:"宇治川沿岸", 出口:"沿河岸步道", 票價:"免費", 注意事項:"步行10-20分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=宇治川+橘島"},
+    {時間:"11:20", 交通工具:"🍵 中村藤吉本店", 起訖:"宇治川步行至本店", 月台:"", 出口:"提早登記候位", 票價:"約 ¥1,500-2,500", 注意事項:"步行約5分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=中村藤吉本店+宇治"},
+    {時間:"13:00", 交通工具:"🚃 JR奈良線", 起訖:"宇治站 → 稻荷站", 月台:"JR宇治站月台", 出口:"走回宇治站", 票價:"¥240", 注意事項:"搭普通車至稻荷站", 地圖預設:"https://www.google.com/maps/search/?api=1&query=JR宇治站"},
+    {時間:"14:00", 交通工具:"🦊 伏見稻荷大社", 起訖:"稻荷站 → 大社正門", 月台:"JR稻荷站", 出口:"唯一出口", 票價:"免費", 注意事項:"出站即到", 地圖預設:"https://www.google.com/maps/search/?api=1&query=伏見稻荷大社"},
+    {時間:"14:20", 交通工具:"⛩️ 千本鳥居", 起訖:"樓門→本殿→千本鳥居", 月台:"大社後方登山步道", 出口:"順參拜動線", 票價:"免費", 注意事項:"爬坡30-60分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=伏見稻荷大社+千本鳥居"},
+    {時間:"16:30", 交通工具:"🚃 JR奈良線", 起訖:"稻荷站 → 京都站", 月台:"JR稻荷站月台", 出口:"走回稻荷站", 票價:"¥150", 注意事項:"車程僅5分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=JR稻荷站"},
+    {時間:"18:00", 交通工具:"🍖 燒肉弘", 起訖:"京都站八條口店", 月台:"", 出口:"透過Google預訂", 票價:"約 ¥3,000-5,000", 注意事項:"但馬屋Premium", 地圖預設:"https://www.google.com/maps/search/?api=1&query=燒肉弘+京都站八條口"}
   ],
   d3: [
-    {時間:"07:30", 交通工具:"🚌 一日遊集合", 起訖:"京都站八條口", 月台:"觀光巴士停靠區", 出口:"從VIA INN走5分", 票價:"已含團費", 注意事項:"切勿遲到"},
-    {時間:"11:00", 交通工具:"🏔️ 天橋立飛龍觀", 起訖:"傘松公園", 月台:"纜車搭乘處", 出口:"隨導遊引導", 票價:"團費內含", 注意事項:"體驗倒過來看升天之龍"},
-    {時間:"14:00", 交通工具:"🛶 伊根舟屋", 起訖:"伊根灣遊覽船", 月台:"伊根灣碼頭", 出口:"登船餵海鷗", 票價:"團費內含", 注意事項:"水上人家建築"},
-    {時間:"19:00", 交通工具:"🚶 抵達大阪", 起訖:"難波→道頓堀飯店", 月台:"難波解散點", 出口:"拉行李步行", 票價:"—", 注意事項:"步行約5-10分鐘"},
-    {時間:"19:40", 交通工具:"🦀 夜逛道頓堀", 起訖:"固力果跑跑人", 月台:"道頓堀沿岸", 出口:"出飯店即達", 票價:"約 ¥1,500-3,000", 注意事項:"金龍拉麵、章魚燒"}
+    {時間:"07:30", 交通工具:"🚌 一日遊集合", 起訖:"京都站八條口", 月台:"觀光巴士停靠區", 出口:"從VIA INN走5分", 票價:"已含團費", 注意事項:"切勿遲到", 地圖預設:"https://www.google.com/maps/search/?api=1&query=京都站八條口+觀光巴士"},
+    {時間:"11:00", 交通工具:"🏔️ 天橋立飛龍觀", 起訖:"傘松公園", 月台:"纜車搭乘處", 出口:"隨導遊引導", 票價:"團費內含", 注意事項:"體驗倒過來看升天之龍", 地圖預設:"https://www.google.com/maps/search/?api=1&query=天橋立+傘松公園"},
+    {時間:"14:00", 交通工具:"🛶 伊根舟屋", 起訖:"伊根灣遊覽船", 月台:"伊根灣碼頭", 出口:"登船餵海鷗", 票價:"團費內含", 注意事項:"水上人家建築", 地圖預設:"https://www.google.com/maps/search/?api=1&query=伊根舟屋"},
+    {時間:"19:00", 交通工具:"🚶 抵達大阪", 起訖:"難波→道頓堀飯店", 月台:"難波解散點", 出口:"拉行李步行", 票價:"—", 注意事項:"步行約5-10分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=道頓堀酒店"},
+    {時間:"19:40", 交通工具:"🦀 夜逛道頓堀", 起訖:"固力果跑跑人", 月台:"道頓堀沿岸", 出口:"出飯店即達", 票價:"約 ¥1,500-3,000", 注意事項:"金龍拉麵、章魚燒", 地圖預設:"https://www.google.com/maps/search/?api=1&query=道頓堀+固力果跑跑人"}
   ],
   d4: [
-    {時間:"09:50", 交通工具:"🚌 大阪跟團集合", 起訖:"道頓堀→大阪集合點", 月台:"指定廣場", 出口:"依通知前往", 票價:"已含團費", 注意事項:"悠閒吃完早餐"},
-    {時間:"11:00", 交通工具:"🏯 姬路城", 起訖:"姬路城公園", 月台:"大手門方向", 出口:"跟隨導遊", 票價:"團費內含", 注意事項:"木造階梯極陡"},
-    {時間:"13:30", 交通工具:"⚓ 神戶港", 起訖:"神戶馬賽克廣場", 月台:"臨海樂園", 出口:"自由活動", 票價:"—", 注意事項:"可買神戶布丁"},
-    {時間:"15:30", 交通工具:"♨️ 有馬溫泉", 起訖:"金之湯/溫泉街", 月台:"老街核心區", 出口:"步行散策", 票價:"自費¥650", 注意事項:"足湯體驗"},
-    {時間:"17:00", 交通工具:"🌌 六甲山夜景", 起訖:"六甲山展覽台", 月台:"觀景第一排", 出口:"注意溫差", 票價:"免費", 注意事項:"日本三大夜景"},
-    {時間:"19:30", 交通工具:"🚇 地下鐵", 起訖:"難波→梅田→天六", 月台:"御堂筋線/堺筋線", 出口:"轉乘谷町線", 票價:"約 ¥240", 注意事項:"梅田轉車"},
-    {時間:"19:50", 交通工具:"🛍️ 天神橋筋", 起訖:"天神橋筋六丁目", 月台:"地下鐵天六站", 出口:"3號或5號", 票價:"免費", 注意事項:"全長2.6km商店街"}
+    {時間:"09:50", 交通工具:"🚌 大阪跟團集合", 起訖:"道頓堀→大阪集合點", 月台:"指定廣場", 出口:"依通知前往", 票價:"已含團費", 注意事項:"悠閒吃完早餐", 地圖預設:"https://www.google.com/maps/search/?api=1&query=道頓堀酒店"},
+    {時間:"11:00", 交通工具:"🏯 姬路城", 起訖:"姬路城公園", 月台:"大手門方向", 出口:"跟隨導遊", 票價:"團費內含", 注意事項:"木造階梯極陡", 地圖預設:"https://www.google.com/maps/search/?api=1&query=姬路城"},
+    {時間:"13:30", 交通工具:"⚓ 神戶港", 起訖:"神戶馬賽克廣場", 月台:"臨海樂園", 出口:"自由活動", 票價:"—", 注意事項:"可買神戶布丁", 地圖預設:"https://www.google.com/maps/search/?api=1&query=神戶馬賽克廣場"},
+    {時間:"15:30", 交通工具:"♨️ 有馬溫泉", 起訖:"金之湯/溫泉街", 月台:"老街核心區", 出口:"步行散策", 票價:"自費¥650", 注意事項:"足湯體驗", 地圖預設:"https://www.google.com/maps/search/?api=1&query=有馬溫泉+金之湯"},
+    {時間:"17:00", 交通工具:"🌌 六甲山夜景", 起訖:"六甲山展覽台", 月台:"觀景第一排", 出口:"注意溫差", 票價:"免費", 注意事項:"日本三大夜景", 地圖預設:"https://www.google.com/maps/search/?api=1&query=六甲山展望台"},
+    {時間:"19:30", 交通工具:"🚇 地下鐵", 起訖:"難波→梅田→天六", 月台:"御堂筋線/堺筋線", 出口:"轉乘谷町線", 票價:"約 ¥240", 注意事項:"梅田轉車", 地圖預設:"https://www.google.com/maps/search/?api=1&query=難波站"},
+    {時間:"19:50", 交通工具:"🛍️ 天神橋筋", 起訖:"天神橋筋六丁目", 月台:"地下鐵天六站", 出口:"3號或5號", 票價:"免費", 注意事項:"全長2.6km商店街", 地圖預設:"https://www.google.com/maps/search/?api=1&query=天神橋筋商店街"}
   ],
   d5: [
-    {時間:"10:15", 交通工具:"🦁 難波八阪神社", 起訖:"飯店→神社", 月台:"地下鐵難波站", 出口:"5號出口", 票價:"免費", 注意事項:"步行7-10分鐘"},
-    {時間:"11:00", 交通工具:"🛍️ 心齋橋衝刺", 起訖:"心齋橋筋商店街", 月台:"心齋橋站/難波站間", 出口:"步行街內", 票價:"依刷卡額度", 注意事項:"帶護照辦免稅"},
-    {時間:"14:35", 交通工具:"🚄 南海電鐵", 起訖:"南海難波站→關西機場", 月台:"3樓北改札口", 出口:"3樓月台", 票價:"約 ¥970-1,450", 注意事項:"搭空港急行約45分"},
-    {時間:"15:55", 交通工具:"✈️ 登機報到", 起訖:"關西機場T1", 月台:"4樓國際線大廳", 出口:"依航班告示", 票價:"—", 注意事項:"托運行李、安檢"}
+    {時間:"10:15", 交通工具:"🦁 難波八阪神社", 起訖:"飯店→神社", 月台:"地下鐵難波站", 出口:"5號出口", 票價:"免費", 注意事項:"步行7-10分鐘", 地圖預設:"https://www.google.com/maps/search/?api=1&query=難波八阪神社"},
+    {時間:"11:00", 交通工具:"🛍️ 心齋橋衝刺", 起訖:"心齋橋筋商店街", 月台:"心齋橋站/難波站間", 出口:"步行街內", 票價:"依刷卡額度", 注意事項:"帶護照辦免稅", 地圖預設:"https://www.google.com/maps/search/?api=1&query=心齋橋商店街"},
+    {時間:"14:35", 交通工具:"🚄 南海電鐵", 起訖:"南海難波站→關西機場", 月台:"3樓北改札口", 出口:"3樓月台", 票價:"約 ¥970-1,450", 注意事項:"搭空港急行約45分", 地圖預設:"https://www.google.com/maps/search/?api=1&query=南海難波站"},
+    {時間:"15:55", 交通工具:"✈️ 登機報到", 起訖:"關西機場T1", 月台:"4樓國際線大廳", 出口:"依航班告示", 票價:"—", 注意事項:"托運行李、安檢", 地圖預設:"https://www.google.com/maps/search/?api=1&query=關西國際機場第一航廈"}
   ]
 };
 
@@ -266,6 +352,7 @@ function 渲染單日行程(天數代號) {
   
   容器.innerHTML = '';
   資料.forEach((項目, 索引) => {
+    const 地圖連結 = 項目.地圖預設 || '#';
     const 行程Div = document.createElement('div');
     行程Div.className = 'timeline-item';
     行程Div.innerHTML = `
@@ -276,7 +363,10 @@ function 渲染單日行程(天數代號) {
         <button class="note-btn" onclick="toggleNote(this)">📌 備註</button>
       </div>
       <div class="item-desc editable">${項目.起訖}</div>
-      <div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div>
+      <div class="item-link">
+        <a href="${地圖連結}" class="map-link" target="_blank">🗺️ Google 地圖</a>
+        <button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button>
+      </div>
       <div class="note-content">
         <div class="note-row"><span class="note-label">月台/位置：</span><span class="note-value editable">${項目.月台 || '—'}</span></div>
         <div class="note-row"><span class="note-label">出口/指引：</span><span class="note-value editable">${項目.出口 || '—'}</span></div>
@@ -335,7 +425,7 @@ function toggleEditMode() {
   isEditMode = !isEditMode;
   const editBtn = document.getElementById('editBtn');
   const banner = document.getElementById('editBanner');
-  const 可編輯元素 = document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc, .note-value');
+  const 可編輯元素 = document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc, .note-value, .guide-text');
   可編輯元素.forEach(el => el.setAttribute('contenteditable', isEditMode));
   document.querySelectorAll('.edit-link-btn, .edit-item-btn').forEach(btn => {
     if (isEditMode) btn.classList.add('show');
@@ -383,7 +473,7 @@ function 建立空白行程() {
     <div class="item-time editable" contenteditable="false">請輸入時間</div>
     <div class="item-title editable" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;"><span>新行程</span><button class="note-btn" onclick="toggleNote(this)">📌 備註</button></div>
     <div class="item-desc editable" contenteditable="false">請輸入描述</div>
-    <div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div>
+    <div class="item-link"><a href="#" class="map-link" target="_blank">🗺️ Google 地圖</a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div>
     <div class="note-content"><div class="note-row"><span class="note-label">月台/位置：</span><span class="note-value editable" contenteditable="false">—</span></div><div class="note-row"><span class="note-label">出口/指引：</span><span class="note-value editable" contenteditable="false">—</span></div><div class="note-row"><span class="note-label">預估票價：</span><span class="note-value editable" contenteditable="false">—</span></div><div class="note-row"><span class="note-label">注意事項：</span><span class="note-value editable" contenteditable="false">—</span></div></div>
     <div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div>
   `;
@@ -432,15 +522,22 @@ function 重新編號(容器) {
 function editLink(btn) {
   if (!isEditMode) { showToast('請先開啟編輯模式'); return; }
   const link = btn.parentElement.querySelector('.map-link');
-  const 新網址 = prompt('輸入 Google 地圖連結：', link.getAttribute('href'));
-  if (新網址 !== null) { link.setAttribute('href', 新網址); link.innerHTML = '🗺️ 查看地圖'; showToast('連結已更新'); }
+  const 新網址 = prompt('請輸入 Google 地圖連結：\n範例：https://www.google.com/maps/search/?api=1&query=清水寺', link.getAttribute('href'));
+  if (新網址 !== null && 新網址.trim() !== '') { 
+    link.setAttribute('href', 新網址.trim()); 
+    link.innerHTML = '🗺️ Google 地圖'; 
+    showToast('連結已更新'); 
+  }
 }
 
 function editHotelLink(btn) {
   if (!isEditMode) { showToast('請先開啟編輯模式'); return; }
   const link = btn.parentElement.querySelector('.hotel-map-link');
-  const 新網址 = prompt('輸入飯店地圖連結：', link.getAttribute('href'));
-  if (新網址 !== null) { link.setAttribute('href', 新網址); showToast('飯店連結已更新'); }
+  const 新網址 = prompt('輸入飯店 Google 地圖連結：', link.getAttribute('href'));
+  if (新網址 !== null && 新網址.trim() !== '') { 
+    link.setAttribute('href', 新網址.trim()); 
+    showToast('飯店連結已更新'); 
+  }
 }
 
 function exportHTML() {
@@ -471,7 +568,7 @@ function setRateMode(mode) {
 function applyCustomRate() { const v=parseFloat(document.getElementById('customRate').value); if(v>0){ currentRate=v; document.getElementById('rateVal').innerText=v.toFixed(4); 換算('jpy'); showToast('已套用自訂匯率'); } }
 async function refreshRate() {
   if(rateMode!=='auto') return;
-  try{ const r=await fetch('https://open.er-api.com/v6/latest/JPY'); const d=await r.json(); if(d.rates?.TWD){ currentRate=d.rates.TWD; document.getElementById('rateVal').innerText=currentRate.toFixed(4); 換算('jpy'); } }catch(e){ showToast('匯率更新失敗'); }
+  try{ const r=await fetch('https://open.er-api.com/v6/latest/JPY'); const d=await r.json(); if(d.rates?.TWD){ currentRate=d.rates.TWD; document.getElementById('rateVal').innerText=currentRate.toFixed(4); 換算('jpy'); showToast('匯率已更新'); } }catch(e){ showToast('匯率更新失敗'); }
 }
 function 換算(src) {
   const jpy=document.getElementById('jpy'), twd=document.getElementById('twd');
@@ -483,7 +580,7 @@ document.getElementById('twd')?.addEventListener('input',()=>換算('twd'));
 setRateMode('auto');
 
 // 初始設定：關閉編輯模式
-document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc, .note-value').forEach(el => el.setAttribute('contenteditable', 'false'));
+document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc, .note-value, .guide-text').forEach(el => el.setAttribute('contenteditable', 'false'));
 </script>
 </body>
 </html>
