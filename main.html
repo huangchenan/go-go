@@ -3,96 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>京都大阪六日遊 - 完整行程手冊</title>
+<title>京都大阪五日遊 - 完整行程手冊</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fb;padding-bottom:80px}
-.hero{background:linear-gradient(135deg,#1e3c72,#2a5298);color:#fff;padding:2rem 1rem 6rem;text-align:center}
-.hero h1{font-size:1.8rem}
-.info-cards-wrap{max-width:600px;margin:-3rem auto 0;padding:0 1rem}
-.info-cards{background:#fff;border-radius:1rem;padding:1rem;display:grid;grid-template-columns:repeat(3,1fr);text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
-.info-card-label{font-size:0.7rem;color:#666}
-.info-card-value{font-weight:bold;color:#1e3c72}
-.tab-nav{max-width:600px;margin:1rem auto 0;padding:0 1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem}
-.tab-btn{background:#fff;border:none;padding:0.8rem 0;border-radius:1rem;font-weight:bold;color:#666;cursor:pointer;transition:all 0.2s}
-.tab-btn.active{background:#1e3c72;color:#fff}
-.tab-wrap{max-width:600px;margin:1rem auto;padding:0 1rem}
-.tab-content{display:none}
-.tab-content.active{display:block}
-.day-selector{display:flex;gap:0.5rem;overflow-x:auto;margin-bottom:1rem;padding-bottom:0.5rem}
-.day-btn{background:#fff;border:none;padding:0.5rem 1rem;border-radius:2rem;font-weight:bold;cursor:pointer;white-space:nowrap;transition:all 0.2s}
-.day-btn.active{background:#1e3c72;color:#fff}
-.day-section{display:none}
-.day-section.active{display:block}
-.day-header{background:#fff;border-radius:1rem;padding:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap}
-.timeline{position:relative}
-.timeline-item{position:relative;padding-left:2.5rem;margin-bottom:1.5rem;border-bottom:1px dashed #eee;padding-bottom:0.8rem}
-.step-circle{position:absolute;left:0;top:0;width:28px;height:28px;background:#1e3c72;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:bold}
-.item-time{font-size:0.7rem;color:#1e3c72;font-weight:bold}
-.item-title{font-weight:bold;margin:0.2rem 0;font-size:0.9rem}
-.item-desc{font-size:0.75rem;color:#666}
-.item-link{margin-top:0.2rem}
-.item-link a{font-size:0.7rem;color:#1e3c72;text-decoration:none}
-.hotel-card{background:#fff;border-radius:1rem;padding:1rem;margin-top:1rem;border-left:4px solid #1e3c72}
-.hotel-name{font-weight:bold;margin:0.3rem 0;color:#1e3c72}
-.hotel-address{font-size:0.7rem;color:#666;display:flex;gap:0.3rem;margin-top:0.3rem}
-.hotel-link{margin-top:0.5rem}
-.hotel-link a{color:#1e3c72;text-decoration:none;font-size:0.75rem}
-.flight-card{background:#fff;border-radius:1rem;margin-bottom:1rem;overflow:hidden}
-.flight-card-head{background:#f5a623;color:#fff;padding:0.8rem;font-weight:bold;font-size:1rem}
-.flight-body{padding:1rem}
-.flight-section{background:#f8f9fa;border-radius:0.5rem;padding:0.8rem;margin-top:0.5rem}
-.flight-section-title{font-weight:bold;margin-bottom:0.5rem;color:#1e3c72}
-.baggage-table{width:100%;border-collapse:collapse;margin-top:0.5rem;font-size:0.75rem}
-.baggage-table th,.baggage-table td{border:1px solid #ddd;padding:0.5rem;text-align:left}
-.baggage-table th{background:#e3f2fd}
-.vjw-card{background:#e8f5e9;border-radius:1rem;padding:1rem;margin-bottom:1rem}
-.vjw-card h3{color:#2e7d32;margin-bottom:0.8rem}
-.vjw-hotel-list{background:#fff;border-radius:0.8rem;padding:0.8rem;margin-top:0.8rem}
-.vjw-hotel-item{border-bottom:1px solid #e0e0e0;padding:0.8rem 0}
-.vjw-hotel-item:last-child{border-bottom:none}
-.vjw-hotel-name{font-weight:bold;color:#1e3c72}
-.vjw-link{margin-top:1rem;text-align:center}
-.vjw-link a{background:#2e7d32;color:#fff;padding:0.5rem 1rem;border-radius:2rem;text-decoration:none;display:inline-block}
-.calc-card{background:#e3f2fd;border-radius:1rem;padding:1rem;margin-bottom:1rem}
-.rate-mode-selector{display:flex;gap:0.5rem;margin-bottom:0.8rem;justify-content:center}
-.rate-mode-btn{background:#fff;border:1px solid #1e3c72;padding:0.3rem 1rem;border-radius:1.5rem;cursor:pointer;font-size:0.7rem}
-.rate-mode-btn.active{background:#1e3c72;color:#fff}
-.custom-rate-input{display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;justify-content:center}
-.custom-rate-input input{width:80px;padding:0.3rem;border:1px solid #ccc;border-radius:0.5rem;text-align:center}
-.checklist-card{background:#fff8e1;border-radius:1rem;padding:1rem}
-.check-item{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem}
-.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:0.8rem;display:flex;justify-content:space-between;border-top:1px solid #ddd;z-index:100}
-.ctrl-row{max-width:600px;margin:0.5rem auto;padding:0 1rem;display:flex;gap:0.5rem;flex-wrap:wrap}
-.ctrl-btn{background:#1e3c72;color:#fff;border:none;padding:0.5rem;border-radius:1rem;font-weight:bold;cursor:pointer;flex:1;min-width:100px}
-.ctrl-btn.btn-edit.active{background:#f5a623}
-.ctrl-btn.btn-delete{background:#dc3545}
-.ctrl-btn.btn-delete:hover{background:#c82333}
-.toast{position:fixed;top:1rem;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:0.5rem 1rem;border-radius:2rem;font-size:0.8rem;z-index:1000;display:none}
-.edit-banner{background:#fff3e0;border:1px solid #f5a623;border-radius:0.5rem;padding:0.5rem;margin-bottom:1rem;font-size:0.75rem;display:none}
-.edit-banner.show{display:block}
-[contenteditable="true"]{outline:2px dashed #f5a623;background:#fff3e0;padding:0 2px;border-radius:4px}
-.edit-link-btn{font-size:0.65rem;background:#f5a623;color:#fff;border:none;border-radius:0.3rem;padding:0.1rem 0.4rem;margin-left:0.5rem;cursor:pointer;display:none}
-.edit-link-btn.show{display:inline-block}
-.edit-item-btns{display:flex;gap:0.3rem;margin-top:0.3rem}
-.edit-item-btn{font-size:0.6rem;background:#6c757d;color:#fff;border:none;border-radius:0.3rem;padding:0.1rem 0.4rem;cursor:pointer;display:none}
-.edit-item-btn.show{display:inline-block}
-.edit-item-btn.add{background:#28a745}
-.edit-item-btn.delete{background:#dc3545}
+/* ========== 全域樣式 ========== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padding-bottom: 80px; }
+.hero { background: linear-gradient(135deg, #1e3c72, #2a5298); color: #fff; padding: 2rem 1rem 6rem; text-align: center; }
+.hero h1 { font-size: 1.8rem; }
+.info-cards-wrap { max-width: 600px; margin: -3rem auto 0; padding: 0 1rem; }
+.info-cards { background: #fff; border-radius: 1rem; padding: 1rem; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.info-card-label { font-size: 0.7rem; color: #666; }
+.info-card-value { font-weight: bold; color: #1e3c72; }
+.tab-nav { max-width: 600px; margin: 1rem auto 0; padding: 0 1rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+.tab-btn { background: #fff; border: none; padding: 0.8rem 0; border-radius: 1rem; font-weight: bold; color: #666; cursor: pointer; transition: all 0.2s; }
+.tab-btn.active { background: #1e3c72; color: #fff; }
+.tab-wrap { max-width: 600px; margin: 1rem auto; padding: 0 1rem; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.day-selector { display: flex; gap: 0.5rem; overflow-x: auto; margin-bottom: 1rem; padding-bottom: 0.5rem; }
+.day-btn { background: #fff; border: none; padding: 0.5rem 1rem; border-radius: 2rem; font-weight: bold; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+.day-btn.active { background: #1e3c72; color: #fff; }
+.day-section { display: none; }
+.day-section.active { display: block; }
+.day-header { background: #fff; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+.timeline { position: relative; }
+.timeline-item { position: relative; padding-left: 2.5rem; margin-bottom: 1.5rem; border-bottom: 1px dashed #eee; padding-bottom: 0.8rem; }
+.step-circle { position: absolute; left: 0; top: 0; width: 28px; height: 28px; background: #1e3c72; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; }
+.item-time { font-size: 0.7rem; color: #1e3c72; font-weight: bold; }
+.item-title { font-weight: bold; margin: 0.2rem 0; font-size: 0.9rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+.item-desc { font-size: 0.75rem; color: #666; }
+.item-link { margin-top: 0.2rem; }
+.item-link a { font-size: 0.7rem; color: #1e3c72; text-decoration: none; }
+.note-btn { background: #e9ecef; border: none; border-radius: 1rem; padding: 0.2rem 0.6rem; font-size: 0.65rem; cursor: pointer; color: #495057; transition: all 0.2s; }
+.note-btn:hover { background: #ced4da; }
+.note-content { display: none; margin-top: 0.5rem; padding: 0.5rem; background: #f8f9fa; border-radius: 0.5rem; font-size: 0.7rem; border-left: 3px solid #1e3c72; }
+.note-content.show { display: block; }
+.note-row { margin-bottom: 0.3rem; display: flex; flex-wrap: wrap; }
+.note-label { font-weight: bold; min-width: 70px; color: #495057; }
+.note-value { color: #666; }
+.guide-section { background: #e8f0fe; border-radius: 0.8rem; margin: 1rem 0; overflow: hidden; }
+.guide-header { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1rem; background: #d4e4fc; cursor: pointer; }
+.guide-header:hover { background: #c0d4f0; }
+.guide-title { font-weight: bold; font-size: 0.8rem; color: #1e3c72; }
+.guide-content { display: none; padding: 0.8rem; }
+.guide-content.show { display: block; }
+.guide-text { width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem; font-size: 0.7rem; font-family: inherit; resize: vertical; }
+.guide-image-input { width: 100%; padding: 0.4rem; margin-bottom: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem; font-size: 0.7rem; }
+.guide-image { max-width: 100%; margin-top: 0.5rem; border-radius: 0.5rem; display: none; }
+.guide-image.show { display: block; }
+.hotel-card { background: #fff; border-radius: 1rem; padding: 1rem; margin-top: 1rem; border-left: 4px solid #1e3c72; }
+.hotel-name { font-weight: bold; margin: 0.3rem 0; color: #1e3c72; }
+.hotel-address { font-size: 0.7rem; color: #666; display: flex; gap: 0.3rem; margin-top: 0.3rem; }
+.hotel-link { margin-top: 0.5rem; }
+.hotel-link a { color: #1e3c72; text-decoration: none; font-size: 0.75rem; }
+.flight-card { background: #fff; border-radius: 1rem; margin-bottom: 1rem; overflow: hidden; }
+.flight-card-head { background: #f5a623; color: #fff; padding: 0.8rem; font-weight: bold; font-size: 1rem; }
+.flight-body { padding: 1rem; }
+.flight-section { background: #f8f9fa; border-radius: 0.5rem; padding: 0.8rem; margin-top: 0.5rem; }
+.flight-section-title { font-weight: bold; margin-bottom: 0.5rem; color: #1e3c72; }
+.baggage-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.75rem; }
+.baggage-table th, .baggage-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+.baggage-table th { background: #e3f2fd; }
+.vjw-card { background: #e8f5e9; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; }
+.vjw-card h3 { color: #2e7d32; margin-bottom: 0.8rem; }
+.vjw-hotel-list { background: #fff; border-radius: 0.8rem; padding: 0.8rem; margin-top: 0.8rem; }
+.vjw-hotel-item { border-bottom: 1px solid #e0e0e0; padding: 0.8rem 0; }
+.vjw-hotel-item:last-child { border-bottom: none; }
+.vjw-hotel-name { font-weight: bold; color: #1e3c72; }
+.vjw-link { margin-top: 1rem; text-align: center; }
+.vjw-link a { background: #2e7d32; color: #fff; padding: 0.5rem 1rem; border-radius: 2rem; text-decoration: none; display: inline-block; }
+.calc-card { background: #e3f2fd; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; }
+.rate-mode-selector { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; justify-content: center; }
+.rate-mode-btn { background: #fff; border: 1px solid #1e3c72; padding: 0.3rem 1rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.7rem; }
+.rate-mode-btn.active { background: #1e3c72; color: #fff; }
+.custom-rate-input { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; justify-content: center; }
+.custom-rate-input input { width: 80px; padding: 0.3rem; border: 1px solid #ccc; border-radius: 0.5rem; text-align: center; }
+.checklist-card { background: #fff8e1; border-radius: 1rem; padding: 1rem; }
+.check-item { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; padding: 0.8rem; display: flex; justify-content: space-between; border-top: 1px solid #ddd; z-index: 100; }
+.ctrl-row { max-width: 600px; margin: 0.5rem auto; padding: 0 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.ctrl-btn { background: #1e3c72; color: #fff; border: none; padding: 0.5rem; border-radius: 1rem; font-weight: bold; cursor: pointer; flex: 1; min-width: 100px; }
+.ctrl-btn.btn-edit.active { background: #f5a623; }
+.ctrl-btn.btn-delete { background: #dc3545; }
+.toast { position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; z-index: 1000; display: none; }
+.edit-banner { background: #fff3e0; border: 1px solid #f5a623; border-radius: 0.5rem; padding: 0.5rem; margin-bottom: 1rem; font-size: 0.75rem; display: none; }
+.edit-banner.show { display: block; }
+[contenteditable="true"] { outline: 2px dashed #f5a623; background: #fff3e0; padding: 0 2px; border-radius: 4px; }
+.edit-link-btn { font-size: 0.65rem; background: #f5a623; color: #fff; border: none; border-radius: 0.3rem; padding: 0.1rem 0.4rem; margin-left: 0.5rem; cursor: pointer; display: none; }
+.edit-link-btn.show { display: inline-block; }
+.edit-item-btns { display: flex; gap: 0.3rem; margin-top: 0.3rem; }
+.edit-item-btn { font-size: 0.6rem; background: #6c757d; color: #fff; border: none; border-radius: 0.3rem; padding: 0.1rem 0.4rem; cursor: pointer; display: none; }
+.edit-item-btn.show { display: inline-block; }
+.edit-item-btn.add { background: #28a745; }
+.edit-item-btn.delete { background: #dc3545; }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <h1>京都大阪六日遊</h1>
-  <p>6天5夜 城市探險計畫 | 2026年2月</p>
+  <h1>京都大阪五日遊</h1>
+  <p>5天4夜 城市探險計畫 | 2026年2月</p>
 </div>
 
 <div class="info-cards-wrap">
   <div class="info-cards">
     <div><div class="info-card-label">主要城市</div><div class="info-card-value">京都/大阪</div></div>
-    <div><div class="info-card-label">總天數</div><div class="info-card-value">6天</div></div>
+    <div><div class="info-card-label">總天數</div><div class="info-card-value">5天</div></div>
     <div><div class="info-card-label">交通工具</div><div class="info-card-value">ICOCA</div></div>
   </div>
 </div>
@@ -110,11 +127,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fb;padding-bott
 </div>
 
 <div class="tab-wrap">
-  <!-- ==================== 行程 Tab ==================== -->
   <div id="tab-itinerary" class="tab-content active">
-    <div id="editBanner" class="edit-banner">
-      ✏️ 編輯模式已開啟 - 點擊黃框文字修改 | 「➕新增」行程 | 「🗑️刪除」行程
-    </div>
+    <div id="editBanner" class="edit-banner">✏️ 編輯模式已開啟 - 點擊黃框文字修改 | 「➕上方新增」行程 | 「🗑️刪除」行程</div>
     <div class="day-selector" id="daySelector">
       <button class="day-btn active" onclick="showDay('d1')">Day 1</button>
       <button class="day-btn" onclick="showDay('d2')">Day 2</button>
@@ -123,110 +137,229 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fb;padding-bott
       <button class="day-btn" onclick="showDay('d5')">Day 5</button>
     </div>
 
-    <!-- Day 1 -->
+    <!-- Day 1 行程區塊（內含完整行程） -->
     <div id="day-d1" class="day-section active">
-      <div class="day-header">
-        <span style="font-size:2rem">🛬</span>
-        <h2 data-day="d1" class="editable-title">Day 1 | 2/5(五) 到關西 → 放行李 → 清水寺 → 京都塔</h2>
-        <button class="ctrl-btn btn-delete" style="padding:0.2rem 0.8rem;font-size:0.7rem;margin-left:auto;width:auto" onclick="deleteDayItems('d1')">🗑️ 清空當天行程</button>
-      </div>
+      <div class="day-header"><span style="font-size:2rem">🛬</span><h2 data-day="d1" class="editable-title">Day 1 | 機場入境、直奔京都與清水寺懷舊暮色</h2></div>
       <div class="timeline" id="timeline-d1">
-        <div class="timeline-item"><div class="step-circle">1</div><div class="item-time editable">03:20 - 04:00</div><div class="item-title editable">機場接送</div><div class="item-desc editable">地點：桃園機場第二航廈 (已預訂)</div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">2</div><div class="item-time editable">04:00 - 04:30</div><div class="item-title editable">虎航報到 - 第一航廈第七櫃台</div><div class="item-desc editable">前往第一航廈辦理報到</div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">3</div><div class="item-time editable">07:00 - 10:25</div><div class="item-title editable">IT210 虎航</div><div class="item-desc editable">航班 IT210 於 07:00 起飛</div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">4</div><div class="item-time editable">11:14 - 12:34</div><div class="item-title editable">京都 - 搭 Haruka (4號月台)</div><div class="item-desc editable">使用 HARUKA 特急券入閘</div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">5</div><div class="item-time editable">13:04 - 13:10</div><div class="item-title editable">VIA INN PRIME 京都站八條口</div><div class="item-desc editable">Check-in 放行李</div><div class="item-link"><a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" class="map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">6</div><div class="item-time editable">13:30 - 14:30</div><div class="item-title editable">Buffet 午餐</div><div class="item-desc editable"></div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">7</div><div class="item-time editable">14:31 - 15:00</div><div class="item-title editable">搭 206 公車到清水道</div><div class="item-desc editable"></div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">8</div><div class="item-time editable">15:01 - 16:30</div><div class="item-title editable">清水寺 + 茶碗坂 + 三年坂 + 二年坂</div><div class="item-desc editable">慢慢逛，感受古都風情</div><div class="item-link"><a href="https://www.google.com/maps/search/?api=1&query=清水寺" class="map-link" target="_blank">🗺️ 清水寺地圖</a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">9</div><div class="item-time editable">16:31 - 17:00</div><div class="item-title editable">回飯店休息</div><div class="item-desc editable"></div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">10</div><div class="item-time editable">18:00 - 19:00</div><div class="item-title editable">京都塔地下美食街 Kyoto Tower Sando</div><div class="item-desc editable"></div><div class="item-link"><a href="https://www.google.com/maps/search/?api=1&query=Kyoto+Tower+Sando" class="map-link" target="_blank">🗺️ 京都塔地圖</a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">11</div><div class="item-time editable">19:01 - 20:00</div><div class="item-title editable">京都塔夜景</div><div class="item-desc editable"></div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-        <div class="timeline-item"><div class="step-circle">12</div><div class="item-time editable">20:00 後</div><div class="item-title editable">京都站晚餐/宵夜，回飯店</div><div class="item-desc editable"></div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
+        <!-- 行程會由 JavaScript 動態產生，但為了確保顯示，直接寫入 HTML -->
       </div>
-      <div style="margin-top:0.5rem;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d1')">➕ 在 Day 1 底部新增行程</button></div>
-      <div class="hotel-card" data-day="d1">
-        <div class="hotel-name editable">🏨 VIA INN PRIME 京都駅八条口</div>
-        <div class="hotel-address editable">📍 601-8002 京都府京都市南區東九條上殿田町44-1</div>
-        <div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div>
-      </div>
+      <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d1')">➕ 在 Day 1 底部新增行程</button></div>
+      <div class="guide-section" data-day="d1"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      <div class="hotel-card" data-day="d1"><div class="hotel-name editable">🏨 VIA INN PRIME 京都駅八条口</div><div class="hotel-address editable">📍 601-8002 京都府京都市南區東九條上殿田町44-1</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
 
-    <!-- Day 2 (保留原有行程，為節省篇幅此處省略，實際使用時完整複製) -->
+    <!-- Day 2 -->
     <div id="day-d2" class="day-section">
-      <div class="day-header"><span style="font-size:2rem">⛩️</span><h2 data-day="d2" class="editable-title">Day 2 | 2/6(六) 伏見稻荷 + 宇治 + 奈良</h2><button class="ctrl-btn btn-delete" style="padding:0.2rem 0.8rem;font-size:0.7rem;margin-left:auto;width:auto" onclick="deleteDayItems('d2')">🗑️ 清空當天行程</button></div>
-      <div class="timeline" id="timeline-d2">
-        <div class="timeline-item"><div class="step-circle">1</div><div class="item-time editable">07:00 - 07:30</div><div class="item-title editable">早餐</div><div class="item-desc editable"></div><div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div><div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div></div>
-      </div>
-      <div style="margin-top:0.5rem;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d2')">➕ 在 Day 2 底部新增行程</button></div>
+      <div class="day-header"><span style="font-size:2rem">⛩️</span><h2 data-day="d2" class="editable-title">Day 2 | 宇治茶香抹茶饗宴與伏見稻荷千本鳥居</h2></div>
+      <div class="timeline" id="timeline-d2"></div>
+      <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d2')">➕ 在 Day 2 底部新增行程</button></div>
+      <div class="guide-section" data-day="d2"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
       <div class="hotel-card" data-day="d2"><div class="hotel-name editable">🏨 VIA INN PRIME 京都駅八条口</div><div class="hotel-address editable">📍 601-8002 京都府京都市南區東九條上殿田町44-1</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
 
-    <!-- Day 3-5 簡化版，實際使用時可完整複製 Day 1 結構 -->
-    <div id="day-d3" class="day-section"><div class="day-header"><span style="font-size:2rem">🏞️</span><h2 data-day="d3" class="editable-title">Day 3 | 2/7(日) 天橋立 + 伊根灣</h2><button class="ctrl-btn btn-delete" style="padding:0.2rem 0.8rem;font-size:0.7rem;margin-left:auto;width:auto" onclick="deleteDayItems('d3')">🗑️ 清空行程</button></div><div class="timeline" id="timeline-d3"></div><div style="margin-top:0.5rem;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d3')">➕ 新增行程</button></div><div class="hotel-card" data-day="d3"><div class="hotel-name editable">🏨 道頓堀酒店</div><div class="hotel-address editable">📍 542-0071 大阪府大阪市中央區道頓堀2-3-25</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div></div>
-    <div id="day-d4" class="day-section"><div class="day-header"><span style="font-size:2rem">🏯</span><h2 data-day="d4" class="editable-title">Day 4 | 2/8(一) 大阪城 + 心齋橋</h2><button class="ctrl-btn btn-delete" style="padding:0.2rem 0.8rem;font-size:0.7rem;margin-left:auto;width:auto" onclick="deleteDayItems('d4')">🗑️ 清空行程</button></div><div class="timeline" id="timeline-d4"></div><div style="margin-top:0.5rem;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d4')">➕ 新增行程</button></div><div class="hotel-card" data-day="d4"><div class="hotel-name editable">🏨 道頓堀酒店</div><div class="hotel-address editable">📍 542-0071 大阪府大阪市中央區道頓堀2-3-25</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div></div>
-    <div id="day-d5" class="day-section"><div class="day-header"><span style="font-size:2rem">✈️</span><h2 data-day="d5" class="editable-title">Day 5 | 2/9(二) 最後採買 + 回台灣</h2><button class="ctrl-btn btn-delete" style="padding:0.2rem 0.8rem;font-size:0.7rem;margin-left:auto;width:auto" onclick="deleteDayItems('d5')">🗑️ 清空行程</button></div><div class="timeline" id="timeline-d5"></div><div style="margin-top:0.5rem;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d5')">➕ 新增行程</button></div><div class="hotel-card" data-day="d5"><div class="hotel-name editable">🏠 溫暖的家</div><div class="hotel-address editable">📍 桃園國際機場</div></div></div>
+    <!-- Day 3 -->
+    <div id="day-d3" class="day-section">
+      <div class="day-header"><span style="font-size:2rem">🏞️</span><h2 data-day="d3" class="editable-title">Day 3 | 絕景天橋立與伊根舟屋 → 轉移大阪道頓堀</h2></div>
+      <div class="timeline" id="timeline-d3"></div>
+      <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d3')">➕ 在 Day 3 底部新增行程</button></div>
+      <div class="guide-section" data-day="d3"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      <div class="hotel-card" data-day="d3"><div class="hotel-name editable">🏨 道頓堀酒店</div><div class="hotel-address editable">📍 542-0071 大阪府大阪市中央區道頓堀2-3-25</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
+    </div>
+
+    <!-- Day 4 -->
+    <div id="day-d4" class="day-section">
+      <div class="day-header"><span style="font-size:2rem">🏯</span><h2 data-day="d4" class="editable-title">Day 4 | 姬路神戶一日遊與大阪天神橋筋大暴走</h2></div>
+      <div class="timeline" id="timeline-d4"></div>
+      <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d4')">➕ 在 Day 4 底部新增行程</button></div>
+      <div class="guide-section" data-day="d4"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      <div class="hotel-card" data-day="d4"><div class="hotel-name editable">🏨 道頓堀酒店</div><div class="hotel-address editable">📍 542-0071 大阪府大阪市中央區道頓堀2-3-25</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
+    </div>
+
+    <!-- Day 5 -->
+    <div id="day-d5" class="day-section">
+      <div class="day-header"><span style="font-size:2rem">✈️</span><h2 data-day="d5" class="editable-title">Day 5 | 難波八阪神社、心齋橋最後補貨 → 關空返台</h2></div>
+      <div class="timeline" id="timeline-d5"></div>
+      <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d5')">➕ 在 Day 5 底部新增行程</button></div>
+      <div class="guide-section" data-day="d5"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明文字..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
+      <div class="hotel-card" data-day="d5"><div class="hotel-name editable">🏠 溫暖的家</div><div class="hotel-address editable">📍 桃園國際機場</div></div>
+    </div>
   </div>
 
-  <!-- ==================== 飛機資訊 Tab ==================== -->
+  <!-- 飛機資訊頁籤 -->
   <div id="tab-flight" class="tab-content">
-    <div class="flight-card"><div class="flight-card-head">🛫 去程 IT210 | 2026年2月5日 (五)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>07:00 桃園國際機場 T1</p><p><strong>抵達：</strong>10:25 關西國際機場 T1</p><p><strong>航空公司：</strong>台灣虎航 Tigerair Taiwan</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計重量 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議購買 20KG 以上)</td></tr><tr><td>尺寸限制</td><td>手提：54cm x 38cm x 23cm 以內</td></tr></table></div><div class="flight-section"><div class="flight-section-title">⚠️ 注意事項</div><p>• 請於起飛前 2 小時抵達機場辦理報到</p><p>• 行動電源、鋰電池請隨身攜帶，不可託運</p><p>• 液體每瓶不超過 100ml，需放入透明夾鏈袋</p></div></div></div>
-    <div class="flight-card"><div class="flight-card-head">🛬 回程 IT213 | 2026年2月9日 (二)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>18:55 關西國際機場 T1</p><p><strong>抵達：</strong>21:15 桃園國際機場 T1</p><p><strong>航空公司：</strong>台灣虎航 Tigerair Taiwan</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計重量 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議購買 20KG 以上)</td></tr></table></div><div class="flight-section"><div class="flight-section-title">⚠️ 注意事項</div><p>• 關西機場建議提前 2-3 小時抵達</p><p>• 回程可於機場免稅店最後採買</p></div></div></div>
+    <div class="flight-card"><div class="flight-card-head">🛫 去程 IT210 | 2026年2月5日 (五)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>07:00 桃園國際機場 T1</p><p><strong>抵達：</strong>10:25 關西國際機場 T1</p><p><strong>航空公司：</strong>台灣虎航</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議 20KG 以上)</td></tr></table></div></div></div>
+    <div class="flight-card"><div class="flight-card-head">🛬 回程 IT213 | 2026年2月9日 (二)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>18:55 關西國際機場 T1</p><p><strong>抵達：</strong>21:15 桃園國際機場 T1</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議 20KG 以上)</td></tr></table></div></div></div>
   </div>
 
-  <!-- ==================== VJW Tab ==================== -->
+  <!-- VJW 頁籤 -->
   <div id="tab-vjw" class="tab-content">
-    <div class="vjw-card"><h3>📋 Visit Japan Web 填寫資料</h3><div class="vjw-hotel-list"><div class="vjw-hotel-item"><div class="vjw-hotel-name">🏨 Day 1-2 住宿 (京都)</div><p><strong>飯店名稱：</strong>VIA INN PRIME 京都駅八条口</p><p><strong>地址：</strong>601-8002 京都府京都市南區東九條上殿田町44-1</p><p><strong>電話：</strong>+81 75-662-5489</p></div><div class="vjw-hotel-item"><div class="vjw-hotel-name">🏨 Day 3-4 住宿 (大阪)</div><p><strong>飯店名稱：</strong>道頓堀酒店</p><p><strong>地址：</strong>542-0071 大阪府大阪市中央區道頓堀2-3-25</p><p><strong>電話：</strong>+81 6-6213-9040</p></div></div><div class="vjw-link"><a href="https://www.vjw.digital.go.jp/" target="_blank">🌐 前往 Visit Japan Web 官方網站填報</a></div><p style="margin-top:1rem;font-size:0.7rem;color:#666">※ 請於出發前完成填寫，並將產生的 QR Code 截圖保存在手機中</p></div>
+    <div class="vjw-card"><h3>📋 Visit Japan Web 填寫資料</h3><div class="vjw-hotel-list"><div class="vjw-hotel-item"><div class="vjw-hotel-name">🏨 Day 1-2 住宿 (京都)</div><p><strong>飯店名稱：</strong>VIA INN PRIME 京都駅八条口</p><p><strong>地址：</strong>601-8002 京都府京都市南區東九條上殿田町44-1</p><p><strong>電話：</strong>+81 75-662-5489</p></div><div class="vjw-hotel-item"><div class="vjw-hotel-name">🏨 Day 3-4 住宿 (大阪)</div><p><strong>飯店名稱：</strong>道頓堀酒店</p><p><strong>地址：</strong>542-0071 大阪府大阪市中央區道頓堀2-3-25</p><p><strong>電話：</strong>+81 6-6213-9040</p></div></div><div class="vjw-link"><a href="https://www.vjw.digital.go.jp/" target="_blank">🌐 前往 Visit Japan Web 官方網站填報</a></div><p style="margin-top:1rem;font-size:0.7rem;color:#666">※ 出發前填寫並截圖 QR Code</p></div>
   </div>
 
-  <!-- ==================== 備忘錄 Tab ==================== -->
+  <!-- 備忘錄頁籤 -->
   <div id="tab-memo" class="tab-content">
-    <div class="calc-card">
-      <h3>💱 日幣匯率計算</h3>
-      <div class="rate-mode-selector">
-        <button id="rateModeAuto" class="rate-mode-btn active" onclick="setRateMode('auto')">📡 即時匯率</button>
-        <button id="rateModeManual" class="rate-mode-btn" onclick="setRateMode('manual')">✏️ 自訂匯率</button>
-      </div>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-        <input type="number" id="jpy" placeholder="日幣" style="flex:1;padding:0.5rem;border-radius:0.5rem;border:1px solid #ccc">
-        <span style="align-self:center">→</span>
-        <input type="number" id="twd" placeholder="台幣" style="flex:1;padding:0.5rem;border-radius:0.5rem;border:1px solid #ccc">
-      </div>
-      <div class="custom-rate-input" id="customRateDiv" style="display:none">
-        <span>自訂匯率：1 JPY = </span>
-        <input type="number" id="customRate" step="0.0001" value="0.21" placeholder="輸入匯率">
-        <span>TWD</span>
-        <button onclick="applyCustomRate()" style="background:#1e3c72;color:#fff;border:none;padding:0.3rem 0.8rem;border-radius:0.5rem">套用</button>
-      </div>
-      <div id="autoRateDiv">
-        <p style="margin-top:0.5rem;font-size:0.7rem">目前即時匯率：1 JPY = <span id="rateVal">0.21</span> TWD</p>
-        <button onclick="refreshRate()" style="margin-top:0.3rem;padding:0.3rem 0.8rem;background:#1e3c72;color:#fff;border:none;border-radius:0.5rem">🔄 更新即時匯率</button>
-      </div>
-    </div>
-    <div class="checklist-card">
-      <h3>✅ 行前檢查清單</h3>
-      <label class="check-item"><input type="checkbox"> 護照 (確認有效期6個月以上)</label>
-      <label class="check-item"><input type="checkbox"> 網路卡 / eSIM 準備完成</label>
-      <label class="check-item"><input type="checkbox"> HARUKA 乘車券 / QR Code</label>
-      <label class="check-item"><input type="checkbox"> 行動電源 (放隨身行李)</label>
-      <label class="check-item"><input type="checkbox"> 日圓現鈔</label>
-      <label class="check-item"><input type="checkbox"> 信用卡 (確認海外消費開通)</label>
-      <label class="check-item"><input type="checkbox"> VJW QR Code 截圖</label>
-      <label class="check-item"><input type="checkbox"> 旅行保險</label>
-    </div>
+    <div class="calc-card"><h3>💱 日幣匯率計算</h3><div class="rate-mode-selector"><button id="rateModeAuto" class="rate-mode-btn active" onclick="setRateMode('auto')">📡 即時匯率</button><button id="rateModeManual" class="rate-mode-btn" onclick="setRateMode('manual')">✏️ 自訂匯率</button></div><div style="display:flex;gap:0.5rem;flex-wrap:wrap"><input type="number" id="jpy" placeholder="日幣" style="flex:1;padding:0.5rem;border-radius:0.5rem;border:1px solid #ccc"><span>→</span><input type="number" id="twd" placeholder="台幣" style="flex:1;padding:0.5rem;border-radius:0.5rem;border:1px solid #ccc"></div><div class="custom-rate-input" id="customRateDiv" style="display:none"><span>自訂匯率：1 JPY = </span><input type="number" id="customRate" step="0.0001" value="0.21"><span>TWD</span><button onclick="applyCustomRate()">套用</button></div><div id="autoRateDiv"><p style="margin-top:0.5rem;font-size:0.7rem">目前即時匯率：1 JPY = <span id="rateVal">0.21</span> TWD</p><button onclick="refreshRate()">🔄 更新即時匯率</button></div></div>
+    <div class="checklist-card"><h3>✅ 行前檢查清單</h3><label class="check-item"><input type="checkbox"> 護照 (有效期6個月以上)</label><label class="check-item"><input type="checkbox"> 網路卡 / eSIM</label><label class="check-item"><input type="checkbox"> HARUKA 乘車券</label><label class="check-item"><input type="checkbox"> 行動電源</label><label class="check-item"><input type="checkbox"> 日圓現鈔</label><label class="check-item"><input type="checkbox"> 信用卡 (海外開通)</label><label class="check-item"><input type="checkbox"> VJW QR Code</label><label class="check-item"><input type="checkbox"> 旅行保險</label></div>
   </div>
 </div>
 
-<div class="bottom-bar">
-  <span>📍 京都 / 大阪</span>
-  <span>🌡️ 2月均溫 5°C ~ 12°C</span>
-</div>
+<div class="bottom-bar"><span>📍 京都 / 大阪</span><span>🌡️ 2月均溫 5°C ~ 12°C</span></div>
 <div id="toast" class="toast"></div>
 
 <script>
+// ======================== 行程資料 (從你的 Excel 完整轉換) ========================
+const 行程資料 = {
+  d1: [
+    {時間:"04:00-04:30", 交通工具:"專車送", 起訖:"虎航第一航廈第七櫃台", 月台:"", 出口:"", 票價:"", 注意事項:""},
+    {時間:"07:00-10:25", 交通工具:"IT210虎航", 起訖:"桃園→關西", 月台:"機位:1B1A", 出口:"", 票價:"", 注意事項:"訂位代號:E2MTRY"},
+    {時間:"10:25", 交通工具:"🛬 抵達關西機場", 起訖:"關西國際機場 T1", 月台:"機場入境大廳", 出口:"往2樓空橋移動", 票價:"—", 注意事項:"航廈內步行、迅速過關"},
+    {時間:"11:30", 交通工具:"🚄 JR 特急 Haruka", 起訖:"關西機場站 → 京都站", 月台:"JR關西機場站月台", 出口:"走空橋至對面車站改札口", 票價:"約 ¥1,800-2,200", 注意事項:"車程約75分鐘"},
+    {時間:"12:55", 交通工具:"🚶 行李與Check-in", 起訖:"京都站 → VIA INN飯店", 月台:"京都車站B1/1F", 出口:"八條東口出站", 票價:"—", 注意事項:"步程約2分鐘"},
+    {時間:"13:20", 交通工具:"🥩 午餐：國產牛吃到飽", 起訖:"京都站八條口周邊", 月台:"", 出口:"步行前往", 票價:"約 ¥4,000-5,000", 注意事項:"步行約5-10分鐘"},
+    {時間:"14:50", 交通工具:"🚌 市巴士206號", 起訖:"京都站 → 清水道站", 月台:"京都站前巴士總站 D2", 出口:"尋找D2排隊線", 票價:"¥230", 注意事項:"搭乘約20分鐘"},
+    {時間:"15:30", 交通工具:"⛩️ 清水寺參拜", 起訖:"清水道 → 仁王門", 月台:"清水道巴士站下車", 出口:"順松原通往上爬", 票價:"¥500門票", 注意事項:"上坡步行10-15分鐘"},
+    {時間:"16:30", 交通工具:"📸 二年坂．三年坂", 起訖:"清水寺 → 八坂塔", 月台:"古街老巷", 出口:"沿石階下山", 票價:"免費", 注意事項:"漫步約30分鐘"},
+    {時間:"18:30", 交通工具:"🚌 市巴士回程", 起訖:"清水道 → 京都站", 月台:"清水道回程巴士站", 出口:"往京都站方向", 票價:"¥230", 注意事項:"預留25-30分鐘"},
+    {時間:"19:00", 交通工具:"🍜 晚餐：京都站周邊", 起訖:"10樓拉麵小路/11樓炸豬排", 月台:"車站大樓內", 出口:"自由挑選", 票價:"約 ¥1,500-3,000", 注意事項:"可至八條口AEON補貨"}
+  ],
+  d2: [
+    {時間:"08:30", 交通工具:"🚃 JR奈良線", 起訖:"京都站 → 宇治站", 月台:"JR京都站8～10號月台", 出口:"從八條口過橋", 票價:"¥240", 注意事項:"搭快車約20分"},
+    {時間:"09:00", 交通工具:"🪷 平等院鳳凰堂", 起訖:"宇治站 → 平等院", 月台:"JR宇治站", 出口:"南口出站", 票價:"¥700門票", 注意事項:"步行10分鐘"},
+    {時間:"10:30", 交通工具:"🌊 宇治川散步", 起訖:"橘島→朝霧橋→宇治神社", 月台:"宇治川沿岸", 出口:"沿河岸步道", 票價:"免費", 注意事項:"步行10-20分鐘"},
+    {時間:"11:20", 交通工具:"🍵 中村藤吉本店", 起訖:"宇治川步行至本店", 月台:"", 出口:"提早登記候位", 票價:"約 ¥1,500-2,500", 注意事項:"步行約5分鐘"},
+    {時間:"13:00", 交通工具:"🚃 JR奈良線", 起訖:"宇治站 → 稻荷站", 月台:"JR宇治站月台", 出口:"走回宇治站", 票價:"¥240", 注意事項:"搭普通車至稻荷站"},
+    {時間:"14:00", 交通工具:"🦊 伏見稻荷大社", 起訖:"稻荷站 → 大社正門", 月台:"JR稻荷站", 出口:"唯一出口", 票價:"免費", 注意事項:"出站即到"},
+    {時間:"14:20", 交通工具:"⛩️ 千本鳥居", 起訖:"樓門→本殿→千本鳥居", 月台:"大社後方登山步道", 出口:"順參拜動線", 票價:"免費", 注意事項:"爬坡30-60分鐘"},
+    {時間:"16:30", 交通工具:"🚃 JR奈良線", 起訖:"稻荷站 → 京都站", 月台:"JR稻荷站月台", 出口:"走回稻荷站", 票價:"¥150", 注意事項:"車程僅5分鐘"},
+    {時間:"18:00", 交通工具:"🍖 燒肉弘", 起訖:"京都站八條口店", 月台:"", 出口:"透過Google預訂", 票價:"約 ¥3,000-5,000", 注意事項:"但馬屋Premium"}
+  ],
+  d3: [
+    {時間:"07:30", 交通工具:"🚌 一日遊集合", 起訖:"京都站八條口", 月台:"觀光巴士停靠區", 出口:"從VIA INN走5分", 票價:"已含團費", 注意事項:"切勿遲到"},
+    {時間:"11:00", 交通工具:"🏔️ 天橋立飛龍觀", 起訖:"傘松公園", 月台:"纜車搭乘處", 出口:"隨導遊引導", 票價:"團費內含", 注意事項:"體驗倒過來看升天之龍"},
+    {時間:"14:00", 交通工具:"🛶 伊根舟屋", 起訖:"伊根灣遊覽船", 月台:"伊根灣碼頭", 出口:"登船餵海鷗", 票價:"團費內含", 注意事項:"水上人家建築"},
+    {時間:"19:00", 交通工具:"🚶 抵達大阪", 起訖:"難波→道頓堀飯店", 月台:"難波解散點", 出口:"拉行李步行", 票價:"—", 注意事項:"步行約5-10分鐘"},
+    {時間:"19:40", 交通工具:"🦀 夜逛道頓堀", 起訖:"固力果跑跑人", 月台:"道頓堀沿岸", 出口:"出飯店即達", 票價:"約 ¥1,500-3,000", 注意事項:"金龍拉麵、章魚燒"}
+  ],
+  d4: [
+    {時間:"09:50", 交通工具:"🚌 大阪跟團集合", 起訖:"道頓堀→大阪集合點", 月台:"指定廣場", 出口:"依通知前往", 票價:"已含團費", 注意事項:"悠閒吃完早餐"},
+    {時間:"11:00", 交通工具:"🏯 姬路城", 起訖:"姬路城公園", 月台:"大手門方向", 出口:"跟隨導遊", 票價:"團費內含", 注意事項:"木造階梯極陡"},
+    {時間:"13:30", 交通工具:"⚓ 神戶港", 起訖:"神戶馬賽克廣場", 月台:"臨海樂園", 出口:"自由活動", 票價:"—", 注意事項:"可買神戶布丁"},
+    {時間:"15:30", 交通工具:"♨️ 有馬溫泉", 起訖:"金之湯/溫泉街", 月台:"老街核心區", 出口:"步行散策", 票價:"自費¥650", 注意事項:"足湯體驗"},
+    {時間:"17:00", 交通工具:"🌌 六甲山夜景", 起訖:"六甲山展覽台", 月台:"觀景第一排", 出口:"注意溫差", 票價:"免費", 注意事項:"日本三大夜景"},
+    {時間:"19:30", 交通工具:"🚇 地下鐵", 起訖:"難波→梅田→天六", 月台:"御堂筋線/堺筋線", 出口:"轉乘谷町線", 票價:"約 ¥240", 注意事項:"梅田轉車"},
+    {時間:"19:50", 交通工具:"🛍️ 天神橋筋", 起訖:"天神橋筋六丁目", 月台:"地下鐵天六站", 出口:"3號或5號", 票價:"免費", 注意事項:"全長2.6km商店街"}
+  ],
+  d5: [
+    {時間:"10:15", 交通工具:"🦁 難波八阪神社", 起訖:"飯店→神社", 月台:"地下鐵難波站", 出口:"5號出口", 票價:"免費", 注意事項:"步行7-10分鐘"},
+    {時間:"11:00", 交通工具:"🛍️ 心齋橋衝刺", 起訖:"心齋橋筋商店街", 月台:"心齋橋站/難波站間", 出口:"步行街內", 票價:"依刷卡額度", 注意事項:"帶護照辦免稅"},
+    {時間:"14:35", 交通工具:"🚄 南海電鐵", 起訖:"南海難波站→關西機場", 月台:"3樓北改札口", 出口:"3樓月台", 票價:"約 ¥970-1,450", 注意事項:"搭空港急行約45分"},
+    {時間:"15:55", 交通工具:"✈️ 登機報到", 起訖:"關西機場T1", 月台:"4樓國際線大廳", 出口:"依航班告示", 票價:"—", 注意事項:"托運行李、安檢"}
+  ]
+};
+
+// ======================== 渲染行程到頁面 ========================
+function 渲染單日行程(天數代號) {
+  const 容器 = document.getElementById(`timeline-${天數代號}`);
+  if (!容器) return;
+  const 資料 = 行程資料[天數代號];
+  if (!資料) return;
+  
+  容器.innerHTML = '';
+  資料.forEach((項目, 索引) => {
+    const 行程Div = document.createElement('div');
+    行程Div.className = 'timeline-item';
+    行程Div.innerHTML = `
+      <div class="step-circle">${索引 + 1}</div>
+      <div class="item-time editable">${項目.時間}</div>
+      <div class="item-title editable" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+        <span>${項目.交通工具}</span>
+        <button class="note-btn" onclick="toggleNote(this)">📌 備註</button>
+      </div>
+      <div class="item-desc editable">${項目.起訖}</div>
+      <div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div>
+      <div class="note-content">
+        <div class="note-row"><span class="note-label">月台/位置：</span><span class="note-value editable">${項目.月台 || '—'}</span></div>
+        <div class="note-row"><span class="note-label">出口/指引：</span><span class="note-value editable">${項目.出口 || '—'}</span></div>
+        <div class="note-row"><span class="note-label">預估票價：</span><span class="note-value editable">${項目.票價 || '—'}</span></div>
+        <div class="note-row"><span class="note-label">注意事項：</span><span class="note-value editable">${項目.注意事項 || '—'}</span></div>
+      </div>
+      <div class="edit-item-btns">
+        <button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button>
+        <button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button>
+      </div>
+    `;
+    容器.appendChild(行程Div);
+  });
+}
+
+// 渲染所有天數
+渲染單日行程('d1');
+渲染單日行程('d2');
+渲染單日行程('d3');
+渲染單日行程('d4');
+渲染單日行程('d5');
+
+// ======================== 備註展開/收起 ========================
+function toggleNote(btn) {
+  const 備註內容 = btn.closest('.timeline-item').querySelector('.note-content');
+  if (備註內容) 備註內容.classList.toggle('show');
+}
+
+// ======================== 實景指南展開/收起 ========================
+function toggleGuide(header) {
+  const 內容 = header.nextElementSibling;
+  const 箭頭 = header.querySelector('span:last-child');
+  if (內容) {
+    內容.classList.toggle('show');
+    箭頭.textContent = 內容.classList.contains('show') ? '▲' : '▼';
+  }
+}
+
+// 監聽圖片輸入框變化
+document.querySelectorAll('.guide-image-input').forEach(input => {
+  input.addEventListener('input', function() {
+    const img = this.nextElementSibling;
+    if (this.value.trim()) {
+      img.src = this.value.trim();
+      img.classList.add('show');
+    } else {
+      img.classList.remove('show');
+    }
+  });
+});
+
+// ======================== 編輯模式、新增刪除等通用函數 ========================
 let isEditMode = false;
-let rateMode = 'auto'; // 'auto' or 'manual'
-let currentRate = 0.21;
+
+function toggleEditMode() {
+  isEditMode = !isEditMode;
+  const editBtn = document.getElementById('editBtn');
+  const banner = document.getElementById('editBanner');
+  const 可編輯元素 = document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc, .note-value');
+  可編輯元素.forEach(el => el.setAttribute('contenteditable', isEditMode));
+  document.querySelectorAll('.edit-link-btn, .edit-item-btn').forEach(btn => {
+    if (isEditMode) btn.classList.add('show');
+    else btn.classList.remove('show');
+  });
+  if (isEditMode) {
+    editBtn.classList.add('active');
+    editBtn.innerHTML = '🔒 結束編輯';
+    banner.classList.add('show');
+    showToast('編輯模式已開啟');
+  } else {
+    editBtn.classList.remove('active');
+    editBtn.innerHTML = '✏️ 開啟編輯模式';
+    banner.classList.remove('show');
+    showToast('編輯模式已關閉');
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.innerText = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2000);
+}
 
 function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -242,235 +375,115 @@ function showDay(dayId) {
   if(event && event.target) event.target.classList.add('active');
 }
 
-function toggleEditMode() {
-  isEditMode = !isEditMode;
-  const editBtn = document.getElementById('editBtn');
-  const banner = document.getElementById('editBanner');
-  const editableElements = document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc');
-  
-  editableElements.forEach(el => {
-    el.setAttribute('contenteditable', isEditMode);
-  });
-  
-  document.querySelectorAll('.edit-link-btn, .edit-item-btn').forEach(btn => {
-    if (isEditMode) btn.classList.add('show');
-    else btn.classList.remove('show');
-  });
-  
-  if (isEditMode) {
-    editBtn.classList.add('active');
-    editBtn.innerHTML = '🔒 結束編輯';
-    banner.classList.add('show');
-    toast('編輯模式已開啟 - 可修改文字、新增/刪除行程');
-  } else {
-    editBtn.classList.remove('active');
-    editBtn.innerHTML = '✏️ 開啟編輯模式';
-    banner.classList.remove('show');
-    renumberSteps();
-    toast('編輯模式已關閉');
-  }
-}
-
-function addItemBefore(btn) {
-  if (!isEditMode) { toast('請先開啟編輯模式'); return; }
-  const targetItem = btn.closest('.timeline-item');
-  const timeline = targetItem.parentElement;
-  const newItem = createEmptyTimelineItem();
-  targetItem.insertAdjacentElement('beforebegin', newItem);
-  renumberStepsInTimeline(timeline);
-  toast('已新增行程');
-}
-
-function addItemToEnd(dayId) {
-  if (!isEditMode) { toast('請先開啟編輯模式'); return; }
-  const timeline = document.getElementById(`timeline-${dayId}`);
-  if (!timeline) return;
-  const newItem = createEmptyTimelineItem();
-  timeline.appendChild(newItem);
-  renumberStepsInTimeline(timeline);
-  toast('已在底部新增行程');
-}
-
-function createEmptyTimelineItem() {
+function 建立空白行程() {
   const div = document.createElement('div');
   div.className = 'timeline-item';
   div.innerHTML = `
     <div class="step-circle">0</div>
     <div class="item-time editable" contenteditable="false">請輸入時間</div>
-    <div class="item-title editable" contenteditable="false">新行程標題</div>
+    <div class="item-title editable" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;"><span>新行程</span><button class="note-btn" onclick="toggleNote(this)">📌 備註</button></div>
     <div class="item-desc editable" contenteditable="false">請輸入描述</div>
     <div class="item-link"><a href="#" class="map-link" target="_blank"></a><button class="edit-link-btn" onclick="editLink(this)">🔗 編輯連結</button></div>
+    <div class="note-content"><div class="note-row"><span class="note-label">月台/位置：</span><span class="note-value editable" contenteditable="false">—</span></div><div class="note-row"><span class="note-label">出口/指引：</span><span class="note-value editable" contenteditable="false">—</span></div><div class="note-row"><span class="note-label">預估票價：</span><span class="note-value editable" contenteditable="false">—</span></div><div class="note-row"><span class="note-label">注意事項：</span><span class="note-value editable" contenteditable="false">—</span></div></div>
     <div class="edit-item-btns"><button class="edit-item-btn add" onclick="addItemBefore(this)">➕ 上方新增</button><button class="edit-item-btn delete" onclick="deleteItem(this)">🗑️ 刪除</button></div>
   `;
-  const editableParts = div.querySelectorAll('.item-time, .item-title, .item-desc');
-  editableParts.forEach(el => el.setAttribute('contenteditable', isEditMode));
-  const btns = div.querySelectorAll('.edit-link-btn, .edit-item-btn');
-  btns.forEach(btn => { if (isEditMode) btn.classList.add('show'); });
+  if (isEditMode) {
+    div.querySelectorAll('.edit-link-btn, .edit-item-btn').forEach(btn => btn.classList.add('show'));
+    div.querySelectorAll('.editable').forEach(el => el.setAttribute('contenteditable', 'true'));
+  }
   return div;
 }
 
+function addItemBefore(btn) {
+  if (!isEditMode) { showToast('請先開啟編輯模式'); return; }
+  const 目標 = btn.closest('.timeline-item');
+  const 容器 = 目標.parentElement;
+  const 新項目 = 建立空白行程();
+  目標.insertAdjacentElement('beforebegin', 新項目);
+  重新編號(容器);
+  showToast('已新增行程');
+}
+
+function addItemToEnd(dayId) {
+  if (!isEditMode) { showToast('請先開啟編輯模式'); return; }
+  const 容器 = document.getElementById(`timeline-${dayId}`);
+  const 新項目 = 建立空白行程();
+  容器.appendChild(新項目);
+  重新編號(容器);
+  showToast('已新增行程');
+}
+
 function deleteItem(btn) {
-  if (!isEditMode) { toast('請先開啟編輯模式'); return; }
-  if (confirm('確定要刪除這個行程嗎？')) {
-    const item = btn.closest('.timeline-item');
-    const timeline = item.parentElement;
-    item.remove();
-    renumberStepsInTimeline(timeline);
-    toast('已刪除行程');
+  if (!isEditMode) { showToast('請先開啟編輯模式'); return; }
+  if (confirm('確定刪除？')) {
+    const 項目 = btn.closest('.timeline-item');
+    const 容器 = 項目.parentElement;
+    項目.remove();
+    重新編號(容器);
+    showToast('已刪除');
   }
 }
 
-function deleteDayItems(dayId) {
-  if (!isEditMode) { toast('請先開啟編輯模式'); return; }
-  if (confirm('確定要清空當天所有行程嗎？')) {
-    const timeline = document.getElementById(`timeline-${dayId}`);
-    if (timeline) {
-      timeline.innerHTML = '';
-      toast('已清空當天行程');
-    }
-  }
-}
-
-function renumberSteps() {
-  document.querySelectorAll('.timeline').forEach(timeline => renumberStepsInTimeline(timeline));
-}
-
-function renumberStepsInTimeline(timeline) {
-  const items = timeline.querySelectorAll('.timeline-item');
-  items.forEach((item, idx) => {
-    const stepCircle = item.querySelector('.step-circle');
-    if (stepCircle) stepCircle.textContent = idx + 1;
-  });
+function 重新編號(容器) {
+  const 項目們 = 容器.querySelectorAll('.timeline-item');
+  項目們.forEach((項, i) => { const 圈 = 項.querySelector('.step-circle'); if(圈) 圈.textContent = i+1; });
 }
 
 function editLink(btn) {
-  if (!isEditMode) { toast('請先開啟編輯模式'); return; }
-  const linkElement = btn.parentElement.querySelector('.map-link');
-  const currentUrl = linkElement ? linkElement.getAttribute('href') : '';
-  const newUrl = prompt('請輸入完整的 Google 地圖連結：', currentUrl);
-  if (newUrl !== null && newUrl.trim() !== '') {
-    if (linkElement) {
-      linkElement.setAttribute('href', newUrl.trim());
-      linkElement.innerHTML = '🗺️ 查看地圖';
-      toast('連結已更新');
-    }
-  } else if (newUrl === '') {
-    if (linkElement) {
-      linkElement.setAttribute('href', '#');
-      linkElement.innerHTML = '';
-    }
-    toast('連結已移除');
-  }
+  if (!isEditMode) { showToast('請先開啟編輯模式'); return; }
+  const link = btn.parentElement.querySelector('.map-link');
+  const 新網址 = prompt('輸入 Google 地圖連結：', link.getAttribute('href'));
+  if (新網址 !== null) { link.setAttribute('href', 新網址); link.innerHTML = '🗺️ 查看地圖'; showToast('連結已更新'); }
 }
 
 function editHotelLink(btn) {
-  if (!isEditMode) { toast('請先開啟編輯模式'); return; }
-  const hotelCard = btn.closest('.hotel-card');
-  const linkElement = hotelCard.querySelector('.hotel-map-link');
-  const currentUrl = linkElement ? linkElement.getAttribute('href') : '';
-  const newUrl = prompt('請輸入飯店 Google 地圖連結：', currentUrl);
-  if (newUrl !== null && newUrl.trim() !== '') {
-    if (linkElement) {
-      linkElement.setAttribute('href', newUrl.trim());
-      linkElement.innerHTML = '🗺️ 飯店地圖導航';
-      toast('飯店連結已更新');
-    }
-  }
-}
-
-function setRateMode(mode) {
-  rateMode = mode;
-  document.getElementById('rateModeAuto').classList.toggle('active', mode === 'auto');
-  document.getElementById('rateModeManual').classList.toggle('active', mode === 'manual');
-  document.getElementById('autoRateDiv').style.display = mode === 'auto' ? 'block' : 'none';
-  document.getElementById('customRateDiv').style.display = mode === 'manual' ? 'flex' : 'none';
-  if (mode === 'auto') refreshRate();
-}
-
-function applyCustomRate() {
-  const customVal = parseFloat(document.getElementById('customRate').value);
-  if (!isNaN(customVal) && customVal > 0) {
-    currentRate = customVal;
-    document.getElementById('rateVal').innerText = currentRate.toFixed(4);
-    convertCurrency('jpy');
-    toast(`已套用自訂匯率：1 JPY = ${currentRate.toFixed(4)} TWD`);
-  }
+  if (!isEditMode) { showToast('請先開啟編輯模式'); return; }
+  const link = btn.parentElement.querySelector('.hotel-map-link');
+  const 新網址 = prompt('輸入飯店地圖連結：', link.getAttribute('href'));
+  if (新網址 !== null) { link.setAttribute('href', 新網址); showToast('飯店連結已更新'); }
 }
 
 function exportHTML() {
-  renumberSteps();
-  const wasEditMode = isEditMode;
-  if (wasEditMode) toggleEditMode();
-  
-  const htmlContent = document.documentElement.cloneNode(true);
-  htmlContent.querySelectorAll('[contenteditable="true"]').forEach(el => {
-    el.setAttribute('contenteditable', 'false');
-  });
-  
-  const blob = new Blob(['<!DOCTYPE html>\n' + htmlContent.outerHTML], { type: 'text/html;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
+  const wasEdit = isEditMode;
+  if (wasEdit) toggleEditMode();
+  const html = document.documentElement.cloneNode(true);
+  html.querySelectorAll('[contenteditable="true"]').forEach(el => el.setAttribute('contenteditable', 'false'));
+  const blob = new Blob(['<!DOCTYPE html>\n' + html.outerHTML], {type:'text/html'});
   const a = document.createElement('a');
-  a.href = url;
-  a.download = '京都大阪六日遊_行程手冊.html';
-  document.body.appendChild(a);
+  a.href = URL.createObjectURL(blob);
+  a.download = '京都大阪五日遊.html';
   a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  
-  if (wasEditMode) toggleEditMode();
-  toast('檔案已下載！');
+  URL.revokeObjectURL(a.href);
+  if (wasEdit) toggleEditMode();
+  showToast('已下載');
 }
 
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.innerText = msg;
-  t.style.display = 'block';
-  setTimeout(() => t.style.display = 'none', 2000);
+// ======================== 匯率相關 ========================
+let rateMode = 'auto', currentRate = 0.21;
+function setRateMode(mode) {
+  rateMode = mode;
+  document.getElementById('rateModeAuto').classList.toggle('active', mode==='auto');
+  document.getElementById('rateModeManual').classList.toggle('active', mode==='manual');
+  document.getElementById('autoRateDiv').style.display = mode==='auto' ? 'block' : 'none';
+  document.getElementById('customRateDiv').style.display = mode==='manual' ? 'flex' : 'none';
+  if (mode==='auto') refreshRate();
 }
-
-const jpyInput = document.getElementById('jpy');
-const twdInput = document.getElementById('twd');
-
-function convertCurrency(src) {
-  if (rateMode === 'auto' && currentRate === 0.21 && document.getElementById('rateVal').innerText !== '0.21') {
-    currentRate = parseFloat(document.getElementById('rateVal').innerText);
-  }
-  if (jpyInput && twdInput) {
-    if (src === 'jpy') {
-      const v = parseFloat(jpyInput.value);
-      twdInput.value = isNaN(v) ? '' : Math.round(v * currentRate);
-    } else {
-      const v = parseFloat(twdInput.value);
-      jpyInput.value = isNaN(v) ? '' : Math.round(v / currentRate);
-    }
-  }
-}
-
-if (jpyInput && twdInput) {
-  jpyInput.addEventListener('input', () => convertCurrency('jpy'));
-  twdInput.addEventListener('input', () => convertCurrency('twd'));
-}
-
+function applyCustomRate() { const v=parseFloat(document.getElementById('customRate').value); if(v>0){ currentRate=v; document.getElementById('rateVal').innerText=v.toFixed(4); 換算('jpy'); showToast('已套用自訂匯率'); } }
 async function refreshRate() {
-  if (rateMode !== 'auto') return;
-  try {
-    const res = await fetch('https://open.er-api.com/v6/latest/JPY');
-    const data = await res.json();
-    if (data.rates && data.rates.TWD) {
-      currentRate = data.rates.TWD;
-      document.getElementById('rateVal').innerText = currentRate.toFixed(4);
-      convertCurrency('jpy');
-      toast('匯率更新成功！1 JPY = ' + currentRate.toFixed(4) + ' TWD');
-    }
-  } catch(e) {
-    toast('匯率更新失敗，使用預設值');
-  }
+  if(rateMode!=='auto') return;
+  try{ const r=await fetch('https://open.er-api.com/v6/latest/JPY'); const d=await r.json(); if(d.rates?.TWD){ currentRate=d.rates.TWD; document.getElementById('rateVal').innerText=currentRate.toFixed(4); 換算('jpy'); } }catch(e){ showToast('匯率更新失敗'); }
 }
-
-document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc').forEach(el => {
-  el.setAttribute('contenteditable', 'false');
-});
+function 換算(src) {
+  const jpy=document.getElementById('jpy'), twd=document.getElementById('twd');
+  if(src==='jpy'){ const v=parseFloat(jpy.value); twd.value=isNaN(v)?'':Math.round(v*currentRate); }
+  else{ const v=parseFloat(twd.value); jpy.value=isNaN(v)?'':Math.round(v/currentRate); }
+}
+document.getElementById('jpy')?.addEventListener('input',()=>換算('jpy'));
+document.getElementById('twd')?.addEventListener('input',()=>換算('twd'));
 setRateMode('auto');
+
+// 初始設定：關閉編輯模式
+document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc, .note-value').forEach(el => el.setAttribute('contenteditable', 'false'));
 </script>
 </body>
 </html>
