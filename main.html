@@ -15,8 +15,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 .info-cards { background: #fff; border-radius: 1rem; padding: 1rem; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 .info-card-label { font-size: 0.7rem; color: #666; }
 .info-card-value { font-weight: bold; color: #1e3c72; }
-.tab-nav { max-width: 600px; margin: 1rem auto 0; padding: 0 1rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
-.tab-btn { background: #fff; border: none; padding: 0.8rem 0; border-radius: 1rem; font-weight: bold; color: #666; cursor: pointer; transition: all 0.2s; }
+.tab-nav { max-width: 600px; margin: 1rem auto 0; padding: 0 1rem; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.3rem; }
+.tab-btn { background: #fff; border: none; padding: 0.8rem 0; border-radius: 1rem; font-weight: bold; color: #666; cursor: pointer; transition: all 0.2s; font-size: 0.8rem; }
 .tab-btn.active { background: #1e3c72; color: #fff; }
 .tab-wrap { max-width: 600px; margin: 1rem auto; padding: 0 1rem; }
 .tab-content { display: none; }
@@ -42,40 +42,20 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 .note-row { margin-bottom: 0.3rem; display: flex; flex-wrap: wrap; }
 .note-label { font-weight: bold; min-width: 70px; color: #495057; }
 .note-value { color: #666; }
-/* ========== 實景指南區塊 - 手機優化版 ========== */
+
+/* ========== 實景指南區塊 ========== */
 .guide-section { background: #e8f0fe; border-radius: 0.8rem; margin: 1rem 0; overflow: hidden; }
 .guide-header { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 1rem; background: #d4e4fc; cursor: pointer; }
 .guide-header:hover { background: #c0d4f0; }
 .guide-title { font-weight: bold; font-size: 0.85rem; color: #1e3c72; }
 .guide-content { display: none; padding: 1rem; }
 .guide-content.show { display: block; }
-/* 文字方塊 - 手機友善：更大、更好點擊 */
-.guide-text { 
-    width: 100%; 
-    min-height: 150px; 
-    padding: 0.8rem; 
-    margin-bottom: 0.8rem; 
-    border: 1px solid #ccc; 
-    border-radius: 0.8rem; 
-    font-size: 0.85rem; 
-    font-family: inherit; 
-    resize: vertical; 
-    background: #fff8f0; 
-    line-height: 1.5;
-}
-/* 圖片網址輸入框 - 手機友善 */
-.guide-image-input { 
-    width: 100%; 
-    padding: 0.8rem; 
-    margin-bottom: 0.8rem; 
-    border: 1px solid #ccc; 
-    border-radius: 0.8rem; 
-    font-size: 0.85rem; 
-    background: white;
-}
+.guide-text { width: 100%; min-height: 150px; padding: 0.8rem; margin-bottom: 0.8rem; border: 1px solid #ccc; border-radius: 0.8rem; font-size: 0.85rem; font-family: inherit; resize: vertical; background: #fff8f0; line-height: 1.5; }
+.guide-image-input { width: 100%; padding: 0.8rem; margin-bottom: 0.8rem; border: 1px solid #ccc; border-radius: 0.8rem; font-size: 0.85rem; background: white; }
 .guide-image { max-width: 100%; margin-top: 0.5rem; border-radius: 0.8rem; display: none; border: 1px solid #ccc; }
 .guide-image.show { display: block; }
-/* 飯店卡片 */
+
+/* ========== 飯店與飛機卡片 ========== */
 .hotel-card { background: #fff; border-radius: 1rem; padding: 1rem; margin-top: 1rem; border-left: 4px solid #1e3c72; }
 .hotel-name { font-weight: bold; margin: 0.3rem 0; color: #1e3c72; }
 .hotel-address { font-size: 0.7rem; color: #666; display: flex; gap: 0.3rem; margin-top: 0.3rem; }
@@ -120,6 +100,21 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 .edit-item-btn.show { display: inline-block; }
 .edit-item-btn.add { background: #28a745; }
 .edit-item-btn.delete { background: #dc3545; }
+
+/* ========== 代購清單專用樣式 ========== */
+.add-form { background: #fff; padding: 1rem; border-radius: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.add-form input, .add-form textarea { width: 100%; padding: 0.6rem 0.8rem; margin-bottom: 0.6rem; border: 1px solid #ccc; border-radius: 0.5rem; font-size: 0.85rem; font-family: inherit; }
+.add-form button { width: 100%; padding: 0.6rem; background: #28a745; color: #fff; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
+.toggle-import { font-size: 0.75rem; color: #007aff; text-align: center; cursor: pointer; margin-bottom: 0.8rem; text-decoration: underline; }
+.shop-item { background: #fff; padding: 0.8rem 1rem; border-radius: 0.8rem; margin-bottom: 0.6rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+.shop-item.bought { opacity: 0.5; background: #e9ecef; }
+.shop-item.bought .shop-title { text-decoration: line-through; }
+.shop-info { flex-grow: 1; margin-right: 0.8rem; }
+.shop-title { font-weight: bold; font-size: 0.9rem; color: #1e3c72; }
+.shop-target { font-size: 0.75rem; color: #666; margin-top: 0.2rem; }
+.action-group { display: flex; align-items: center; gap: 0.5rem; }
+.shop-checkbox { width: 20px; height: 20px; cursor: pointer; }
+.btn-action { background: none; border: none; font-size: 1rem; cursor: pointer; padding: 0.2rem; }
 </style>
 </head>
 <body>
@@ -142,14 +137,17 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
   <button class="ctrl-btn btn-export" onclick="exportHTML()">💾 匯出網頁檔</button>
 </div>
 
+<!-- 分頁導覽按鈕 -->
 <div class="tab-nav">
   <button class="tab-btn active" onclick="showTab('itinerary')">📅 行程</button>
+  <button class="tab-btn" onclick="showTab('shopping')">🛍️ 代購</button>
   <button class="tab-btn" onclick="showTab('flight')">✈️ 飛機</button>
   <button class="tab-btn" onclick="showTab('vjw')">📱 VJW</button>
   <button class="tab-btn" onclick="showTab('memo')">📝 備忘錄</button>
 </div>
 
 <div class="tab-wrap">
+  <!-- 行程頁籤 -->
   <div id="tab-itinerary" class="tab-content active">
     <div id="editBanner" class="edit-banner">✏️ 編輯模式已開啟 - 點擊黃框文字修改 | 點「🔗 編輯連結」可貼上 Google 地圖網址</div>
     <div class="day-selector" id="daySelector">
@@ -165,15 +163,14 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <div class="day-header"><span style="font-size:2rem">🛬</span><h2 data-day="d1" class="editable-title">Day 1 | 機場入境、直奔京都與清水寺懷舊暮色</h2></div>
       <div class="timeline" id="timeline-d1"></div>
       <div style="margin:0.5rem 0;text-align:center"><button class="ctrl-btn" style="background:#28a745;padding:0.3rem;width:auto;font-size:0.7rem" onclick="addItemToEnd('d1')">➕ 在 Day 1 底部新增行程</button></div>
-      
-      <!-- 實景指南 - 文字方塊已加大，手機好用 -->
+
       <div class="guide-section" data-day="d1">
         <div class="guide-header" onclick="toggleGuide(this)">
           <span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 1</span>
           <span>▼</span>
         </div>
         <div class="guide-content">
-          <textarea class="guide-text" placeholder="在此輸入製圖說明文字...&#10;例如：&#10;1. 關西機場 HARUKA 搭乘點：擷取關西機場 T1 2樓往「關西空港駅」藍色 JR 入口的外觀照片。&#10;2. 地圖箭頭繪製：從改札口畫箭頭指向 B 月台。">【關西機場 HARUKA 搭乘點】
+          <textarea class="guide-text" placeholder="在此輸入製圖說明文字...">【關西機場 HARUKA 搭乘點】
 街景照片位置：擷取關西機場 T1 2樓往「關西空港駅」藍色 JR 入口的外觀照片。
 地圖箭頭繪製：擷取機場車站內部地圖，畫一條黃色箭頭從改札口穿過，直接指向 B 月台（HARUKA 專用月台）的下樓手扶梯。
 
@@ -184,16 +181,16 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
 【清水寺巴士 D2 月台】
 街景照片位置：擷取京都站烏丸口（前站）前方巨大巴士總站的實景，特別特寫 "D2" 的綠色站牌標誌。
 地圖箭頭繪製：擷取京都站前巴士月台配置圖，從中央口出站位置拉一條綠色箭頭，穿越 A、B、C 區，精準指向 D2 月台候車線。</textarea>
-          <input type="text" class="guide-image-input" placeholder="📎 貼上圖片網址 (支援 Imgur、Google 相簿等)&#10;例如：https://i.imgur.com/xxxxx.jpg">
+          <input type="text" class="guide-image-input" placeholder="📎 貼上圖片網址 (支援 Imgur、Google 相簿等)">
           <img class="guide-image" src="" alt="實景參考圖">
           <p style="font-size:0.7rem; color:#666; margin-top:0.5rem;">💡 提示：貼上圖片網址後會自動顯示，可先上傳到 Imgur 再貼連結</p>
         </div>
       </div>
-      
+
       <div class="hotel-card" data-day="d1"><div class="hotel-name editable">🏨 VIA INN PRIME 京都駅八条口</div><div class="hotel-address editable">📍 601-8002 京都府京都市南區東九條上殿田町44-1</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
 
-    <!-- Day 2-5 省略，但結構相同（實際使用時會完整包含） -->
+    <!-- Day 2 -->
     <div id="day-d2" class="day-section">
       <div class="day-header"><span style="font-size:2rem">⛩️</span><h2 data-day="d2" class="editable-title">Day 2 | 宇治茶香抹茶饗宴與伏見稻荷千本鳥居</h2></div>
       <div class="timeline" id="timeline-d2"></div>
@@ -201,6 +198,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <div class="guide-section" data-day="d2"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 2</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
       <div class="hotel-card" data-day="d2"><div class="hotel-name editable">🏨 VIA INN PRIME 京都駅八条口</div><div class="hotel-address editable">📍 601-8002 京都府京都市南區東九條上殿田町44-1</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=VIA+INN+PRIME+%E4%BA%AC%E9%83%BD%E9%A7%85%E5%85%AB%E6%9D%A1%E5%8F%A3" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
+
+    <!-- Day 3 -->
     <div id="day-d3" class="day-section">
       <div class="day-header"><span style="font-size:2rem">🏞️</span><h2 data-day="d3" class="editable-title">Day 3 | 絕景天橋立與伊根舟屋 → 轉移大阪道頓堀</h2></div>
       <div class="timeline" id="timeline-d3"></div>
@@ -208,6 +207,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <div class="guide-section" data-day="d3"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 3</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
       <div class="hotel-card" data-day="d3"><div class="hotel-name editable">🏨 道頓堀酒店</div><div class="hotel-address editable">📍 542-0071 大阪府大阪市中央區道頓堀2-3-25</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
+
+    <!-- Day 4 -->
     <div id="day-d4" class="day-section">
       <div class="day-header"><span style="font-size:2rem">🏯</span><h2 data-day="d4" class="editable-title">Day 4 | 姬路神戶一日遊與大阪天神橋筋大暴走</h2></div>
       <div class="timeline" id="timeline-d4"></div>
@@ -215,6 +216,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
       <div class="guide-section" data-day="d4"><div class="guide-header" onclick="toggleGuide(this)"><span class="guide-title">📷 實景照片與地圖箭頭製圖指南 - Day 4</span><span>▼</span></div><div class="guide-content"><textarea class="guide-text" placeholder="輸入製圖說明..."></textarea><input type="text" class="guide-image-input" placeholder="貼上圖片網址"><img class="guide-image" src="" alt="實景參考圖"></div></div>
       <div class="hotel-card" data-day="d4"><div class="hotel-name editable">🏨 道頓堀酒店</div><div class="hotel-address editable">📍 542-0071 大阪府大阪市中央區道頓堀2-3-25</div><div class="hotel-link"><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E9%A0%93%E5%A0%B0%E9%85%92%E5%BA%97" class="hotel-map-link" target="_blank">🗺️ 飯店地圖導航</a><button class="edit-link-btn" onclick="editHotelLink(this)">🔗 編輯飯店連結</button></div></div>
     </div>
+
+    <!-- Day 5 -->
     <div id="day-d5" class="day-section">
       <div class="day-header"><span style="font-size:2rem">✈️</span><h2 data-day="d5" class="editable-title">Day 5 | 難波八阪神社、心齋橋最後補貨 → 關空返台</h2></div>
       <div class="timeline" id="timeline-d5"></div>
@@ -224,10 +227,40 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f7fb; padd
     </div>
   </div>
 
+  <!-- 代購清單頁籤 (連動 Firestore) -->
+  <div id="tab-shopping" class="tab-content">
+    <!-- 單筆新增表單 -->
+    <div class="add-form">
+      <h3 style="margin-bottom:0.6rem; color:#1e3c72; font-size:1rem;">🛍️ 新增代購項目</h3>
+      <input type="text" id="itemName" placeholder="商品名稱 (例：合利他命 EX)">
+      <input type="text" id="itemTarget" placeholder="代購對象/備註 (例：老媽/買2瓶)">
+      <button id="addBtn">➕ 新增至代購清單</button>
+    </div>
+
+    <!-- 開關：展開/隱藏 Excel 貼上區 -->
+    <div class="toggle-import" onclick="toggleBatchBox()">📋 展開/隱藏「從 Excel 複製貼上批量匯入」</div>
+
+    <!-- Excel 批次貼上表單 (預設隱藏) -->
+    <div id="batchBox" class="add-form" style="display:none; background:#eef4ff;">
+      <h3 style="margin-bottom:0.4rem; color:#1e3c72; font-size:0.95rem;">📋 從 Excel 複製貼上匯入</h3>
+      <p style="font-size:0.7rem; color:#666; margin-bottom:0.6rem;">格式（每行一筆）：<b>商品名稱 [Tab] 對象/備註</b></p>
+      <textarea id="pasteInput" rows="5" placeholder="可直接從 Excel 選取兩欄複製貼上：
+合利他命	老媽/買2瓶
+DHC護唇膏	小妹
+極潤保濕水	自己"></textarea>
+      <button id="batchAddBtn" style="background:#007aff;">🚀 一鍵批次匯入 Firestore</button>
+    </div>
+
+    <!-- 代購清單動態渲染區 -->
+    <div id="shoppingList">
+      <div style="text-align: center; padding: 20px; color: #888;">載入清單中...</div>
+    </div>
+  </div>
+
   <!-- 飛機資訊頁籤 -->
   <div id="tab-flight" class="tab-content">
-    <div class="flight-card"><div class="flight-card-head">🛫 去程 IT210 | 2026年2月5日 (五)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>07:00 桃園國際機場 T1</p><p><strong>抵達：</strong>10:25 關西國際機場 T1</p><p><strong>航空公司：</strong>台灣虎航</p><p><strong>訂位代號：</strong>E2MTRY</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th><tr><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議 20KG 以上)</td></tr></table></div></div></div>
-    <div class="flight-card"><div class="flight-card-head">🛬 回程 IT213 | 2026年2月9日 (二)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>18:55 關西國際機場 T1</p><p><strong>抵達：</strong>21:15 桃園國際機場 T1</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr></table></div></div></div>
+    <div class="flight-card"><div class="flight-card-head">🛫 去程 IT210 | 2026年2月5日 (五)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>07:00 桃園國際機場 T1</p><p><strong>抵達：</strong>10:25 關西國際機場 T1</p><p><strong>航空公司：</strong>台灣虎航</p><p><strong>訂位代號：</strong>E2MTRY</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr><tr><td>託運行李</td><td>依購買方案 (建議 20KG 以上)</td></tr></table></div></div></div>
+    <div class="flight-card"><div class="flight-card-head">🛬 回程 IT213 | 2026年2月9日 (二)</div><div class="flight-body"><div class="flight-section"><div class="flight-section-title">✈️ 航班資訊</div><p><strong>起飛：</strong>18:55 關西國際機場 T1</p><p><strong>抵達：</strong>21:15 桃園國際機場 T1</p></div><div class="flight-section"><div class="flight-section-title">🧳 行李規定</div><table class="baggage-table"><tr><th>項目</th><th>規定</th></tr><tr><td>手提行李</td><td>最多 2 件，合計 10 KG 以內</td></tr></table></div></div></div>
   </div>
 
   <!-- VJW 頁籤 -->
@@ -302,7 +335,7 @@ function 渲染單日行程(天數代號) {
   if (!容器) return;
   const 資料 = 行程資料[天數代號];
   if (!資料) return;
-  
+
   容器.innerHTML = '';
   資料.forEach((項目, 索引) => {
     const 地圖連結 = 項目.地圖預設 || '#';
@@ -342,13 +375,12 @@ function 渲染單日行程(天數代號) {
 渲染單日行程('d4');
 渲染單日行程('d5');
 
-// ======================== 備註展開/收起 ========================
+// ======================== 備註與指南切換 ========================
 function toggleNote(btn) {
   const 備註內容 = btn.closest('.timeline-item').querySelector('.note-content');
   if (備註內容) 備註內容.classList.toggle('show');
 }
 
-// ======================== 實景指南展開/收起 ========================
 function toggleGuide(header) {
   const 內容 = header.nextElementSibling;
   const 箭頭 = header.querySelector('span:last-child');
@@ -358,7 +390,6 @@ function toggleGuide(header) {
   }
 }
 
-// 監聽圖片輸入框變化
 document.querySelectorAll('.guide-image-input').forEach(input => {
   input.addEventListener('input', function() {
     const img = this.nextElementSibling;
@@ -371,7 +402,7 @@ document.querySelectorAll('.guide-image-input').forEach(input => {
   });
 });
 
-// ======================== 編輯模式、新增刪除等通用函數 ========================
+// ======================== 通用介面切換與編輯模式 ========================
 let isEditMode = false;
 
 function toggleEditMode() {
@@ -475,7 +506,7 @@ function 重新編號(容器) {
 function editLink(btn) {
   if (!isEditMode) { showToast('請先開啟編輯模式'); return; }
   const link = btn.parentElement.querySelector('.map-link');
-  const 新網址 = prompt('請輸入 Google 地圖連結：\n範例：https://www.google.com/maps/search/?api=1&query=清水寺', link.getAttribute('href'));
+  const 新網址 = prompt('請輸入 Google 地圖連結：', link.getAttribute('href'));
   if (新網址 !== null && 新網址.trim() !== '') { 
     link.setAttribute('href', 新網址.trim()); 
     link.innerHTML = '🗺️ Google 地圖'; 
@@ -508,6 +539,12 @@ function exportHTML() {
   showToast('已下載');
 }
 
+// 切換 Excel 批次匯入視窗
+function toggleBatchBox() {
+  const box = document.getElementById("batchBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
 // ======================== 匯率相關 ========================
 let rateMode = 'auto', currentRate = 0.21;
 function setRateMode(mode) {
@@ -534,6 +571,149 @@ setRateMode('auto');
 
 // 初始設定：關閉編輯模式
 document.querySelectorAll('.editable, .editable-title, .hotel-name, .hotel-address, .item-time, .item-title, .item-desc, .note-value, .guide-text').forEach(el => el.setAttribute('contenteditable', 'false'));
+</script>
+
+<!-- ======================== Firebase / Firestore / 代購清單邏輯 ======================== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { 
+    getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, query, orderBy 
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // ⚠️ 請替換為你在 Firebase Console 取得的金鑰設定
+  const firebaseConfig = {
+    piKey: "AIzaSyBsqASu2urYSPgJDWdYf4RPHYCcS7tTWuY",
+    authDomain: "japan-travel-2026-ebf68.firebaseapp.com",
+    projectId: "japan-travel-2026-ebf68",
+    storageBucket: "japan-travel-2026-ebf68.firebasestorage.app",
+    messagingSenderId: "13282128748",
+    appId: "1:13282128748:web:ec2f33c78e80005ac33949",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const shoppingCol = collection(db, "shopping_list");
+
+  // 1. 單筆新增代購項目
+  document.getElementById("addBtn").addEventListener("click", async () => {
+    const name = document.getElementById("itemName").value.trim();
+    const target = document.getElementById("itemTarget").value.trim();
+
+    if (!name) return showToast("請輸入商品名稱");
+
+    try {
+      await addDoc(shoppingCol, {
+        item: name,
+        target: target || "自己",
+        bought: false,
+        createdAt: new Date()
+      });
+      document.getElementById("itemName").value = "";
+      document.getElementById("itemTarget").value = "";
+      showToast("已新增代購項目");
+    } catch (err) {
+      console.error("新增失敗:", err);
+      showToast("新增失敗，請檢查網路或金鑰");
+    }
+  });
+
+  // 2. 批次從 Excel / Google 試算表貼上匯入
+  document.getElementById("batchAddBtn").addEventListener("click", async () => {
+    const rawText = document.getElementById("pasteInput").value.trim();
+    if (!rawText) return showToast("請貼上內容！");
+
+    const lines = rawText.split("\n");
+    let count = 0;
+
+    for (let line of lines) {
+      if (!line.trim()) continue;
+      // Excel 複製出來的欄位預設使用 Tab (\t) 分隔
+      const parts = line.split("\t");
+      const name = parts[0] ? parts[0].trim() : "";
+      const target = parts[1] ? parts[1].trim() : "自己";
+
+      if (name) {
+        await addDoc(shoppingCol, {
+          item: name,
+          target: target,
+          bought: false,
+          createdAt: new Date()
+        });
+        count++;
+      }
+    }
+
+    showToast(`成功匯入 ${count} 筆資料！`);
+    document.getElementById("pasteInput").value = "";
+    document.getElementById("batchBox").style.display = "none";
+  });
+
+  // 3. 即時讀取與自動同步 (Realtime Sync)
+  const listEl = document.getElementById("shoppingList");
+  const q = query(shoppingCol, orderBy("createdAt", "desc"));
+
+  onSnapshot(q, (snapshot) => {
+    listEl.innerHTML = "";
+    if (snapshot.empty) {
+      listEl.innerHTML = `<div style="text-align: center; padding: 20px; color: #888;">目前沒有代購項目</div>`;
+      return;
+    }
+
+    snapshot.forEach(docSnap => {
+      const data = docSnap.data();
+      const id = docSnap.id;
+
+      const itemDiv = document.createElement("div");
+      itemDiv.className = `shop-item ${data.bought ? 'bought' : ''}`;
+      itemDiv.innerHTML = `
+        <div class="shop-info">
+          <div class="shop-title">${data.item}</div>
+          <div class="shop-target">👤 ${data.target}</div>
+        </div>
+        <div class="action-group">
+          <input type="checkbox" class="shop-checkbox" ${data.bought ? 'checked' : ''} data-id="${id}">
+          <button class="btn-action" onclick="editShoppingItem('${id}', '${data.item}', '${data.target}')">✏️</button>
+          <button class="btn-action" onclick="deleteShoppingItem('${id}')">🗑️</button>
+        </div>
+      `;
+      listEl.appendChild(itemDiv);
+    });
+  });
+
+  // 4. 勾選/取消勾選狀態 (Update Checkbox)
+  listEl.addEventListener("change", async (e) => {
+    if (e.target.classList.contains("shop-checkbox")) {
+      const docId = e.target.getAttribute("data-id");
+      const isChecked = e.target.checked;
+      await updateDoc(doc(db, "shopping_list", docId), { bought: isChecked });
+      showToast(isChecked ? "已標記為已購買" : "已標記為未購買");
+    }
+  });
+
+  // 5. 修改品名或對象 (Update Text)
+  window.editShoppingItem = async function(docId, oldName, oldTarget) {
+    const newName = prompt("請輸入新的商品名稱：", oldName);
+    if (newName === null) return;
+    
+    const newTarget = prompt("請輸入新的委託人/備註：", oldTarget);
+    if (newTarget === null) return;
+
+    if (newName.trim()) {
+      await updateDoc(doc(db, "shopping_list", docId), {
+        item: newName.trim(),
+        target: newTarget.trim() || "自己"
+      });
+      showToast("更新成功");
+    }
+  };
+
+  // 6. 刪除代購項目 (Delete)
+  window.deleteShoppingItem = async function(docId) {
+    if (confirm("確定要刪除這筆代購嗎？")) {
+      await deleteDoc(doc(db, "shopping_list", docId));
+      showToast("已刪除代購項目");
+    }
+  };
 </script>
 </body>
 </html>
